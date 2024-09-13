@@ -1,0 +1,6 @@
+,Fire,Water,Earth,Air,Steam
+Fire,,Steam,Lava,Energy,FireSteam
+Water,Steam,,Mud,Mist,WaterSteam
+Earth,Lava,Mud,,Dust,EarthSteam
+Air,Energy,Mist,Dust,,AirSteam
+Steam,FireSteam,WaterSteam,EarthSteam,AirSteam,
