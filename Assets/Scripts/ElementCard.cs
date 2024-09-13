@@ -1,12 +1,24 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
+[SelectionBase]
 public class ElementCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public Element cardElement;
+    public Element element;
     private CanvasGroup canvasGroup;
+
+    [Header("Events")]
+    [HideInInspector] public UnityEvent OnSelect;
+    [HideInInspector] public UnityEvent<bool> OnHover;
+    [HideInInspector] public UnityEvent OnElementChange;
+
+    void Start()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -22,47 +34,28 @@ public class ElementCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
-
-        if (InteractionManager.instance.hoveredCard != null)
-        {
-
-            Element combination = CombinationManager.instance.GetCombinationResult(cardElement, InteractionManager.instance.hoveredCard.cardElement);
-            print(combination);
-            if (combination != null)
-            {
-                InteractionManager.instance.hoveredCard.UpdateElement(combination);
-                Destroy(gameObject);
-            }
-        }
+        InteractionManager.instance.TryInteraction();
         InteractionManager.instance.selectedCard = null;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        OnHover.Invoke(true);
         if (InteractionManager.instance.selectedCard != null)
-        {
             InteractionManager.instance.hoveredCard = this;
-        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        OnHover.Invoke(false);
         if (InteractionManager.instance.selectedCard != null)
-        {
             InteractionManager.instance.hoveredCard = null;
-        }
     }
 
-    void Start()
-    {
-        canvasGroup = GetComponent<CanvasGroup>();
-
-        GetComponentInChildren<TextMeshProUGUI>().text = cardElement.name;
-    }
 
     public void UpdateElement(Element element)
     {
-        cardElement = element;
-        GetComponentInChildren<TextMeshProUGUI>().text = cardElement.name;
+        this.element = element;
+        OnElementChange.Invoke();
     }
 }

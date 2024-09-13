@@ -12,4 +12,20 @@ public class InteractionManager : MonoBehaviour
         instance = this;
     }
 
+    internal void TryInteraction()
+    {
+        if (selectedCard != null && hoveredCard != null)
+        {
+            Element combination = CombinationManager.instance.GetCombinationResult(selectedCard.element, hoveredCard.element);
+            if (combination != null)
+            {
+                Destroy(hoveredCard.gameObject);
+                selectedCard.UpdateElement(combination);
+            }
+            else
+            {
+                print("no combination");
+            }
+        }
+    }
 }

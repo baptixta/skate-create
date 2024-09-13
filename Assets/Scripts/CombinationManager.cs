@@ -13,7 +13,7 @@ public class CombinationManager : MonoBehaviour
     }
     void Start()
     {
-        LoadCombinationsFrom2DMatrixCSV("combinations");
+        LoadCombinationsFrom2DMatrixCSV("combinations2");
     }
 
     // Load CSV from Resources folder (2D matrix format)
