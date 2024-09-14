@@ -43,7 +43,6 @@ public class ElementBatchCreator : EditorWindow
 
         // Read the CSV file line by line
         StringReader reader = new StringReader(csvFile.text);
-        List<string> headers = new List<string>();
         bool firstLine = true;
 
         string line;
@@ -53,34 +52,24 @@ public class ElementBatchCreator : EditorWindow
 
             if (firstLine)
             {
-                // Read the header row (elements)
-                for (int i = 1; i < row.Length; i++) // Skip first empty cell
-                {
-                    string headerElementName = row[i].Trim();
-                    headers.Add(headerElementName);
-                    CreateScriptableObject(headerElementName);  // Create base element
-                }
+                // Skip header
                 firstLine = false;
+                continue;
             }
-            else
-            {
-                string rowElementName = row[0].Trim();
-                CreateScriptableObject(rowElementName);  // Create base element for the row element
 
-                for (int i = 1; i < row.Length; i++)
-                {
-                    string resultName = row[i].Trim();
-                    if (!string.IsNullOrEmpty(resultName))
-                    {
-                        CreateScriptableObject(resultName);  // Create result element
-                    }
-                }
-            }
+            string element1Name = row[0].Trim();
+            string element2Name = row[1].Trim();
+            string resultName = row[2].Trim();
+
+            CreateScriptableObject(element1Name);
+            CreateScriptableObject(element2Name);
+            CreateScriptableObject(resultName);
         }
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
+
 
     private void CreateScriptableObject(string elementName)
     {

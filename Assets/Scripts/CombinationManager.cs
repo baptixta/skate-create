@@ -1,101 +1,101 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
+using System.IO;
 
 public class CombinationManager : MonoBehaviour
 {
     public static CombinationManager instance { get; private set; }
-    private Dictionary<string, Element> combinations = new Dictionary<string, Element>();
+    private Dictionary<(Element, Element), Element> combinations = new Dictionary<(Element, Element), Element>();
 
     private void Awake()
     {
         instance = this;
     }
-    void Start()
+    private void Start()
     {
-        LoadCombinationsFrom2DMatrixCSV("combinations2");
+        LoadCombinationsFromCSV("combinations3");
     }
 
-    // Load CSV from Resources folder (2D matrix format)
-    private void LoadCombinationsFrom2DMatrixCSV(string fileName)
+    // Load the combinations from the simplified CSV format
+    private void LoadCombinationsFromCSV(string fileName)
     {
         TextAsset csvFile = Resources.Load<TextAsset>(fileName); // Load the CSV file
-        StringReader reader = new StringReader(csvFile.text);
-
-        List<string> headers = new List<string>();
-        bool firstLine = true;
-
-        string line;
-        while ((line = reader.ReadLine()) != null)
+        if (csvFile == null)
         {
-            string[] row = line.Split(',');
-
-            // If it's the first line, we are reading the headers (element names)
-            if (firstLine)
-            {
-                for (int i = 1; i < row.Length; i++) // Skip first empty cell
-                {
-                    headers.Add(row[i].Trim()); // Add element names (Fire, Water, etc.)
-                }
-                firstLine = false;
-            }
-            else
-            {
-                // The first column is the row's element (e.g., Fire, Water, etc.)
-                string rowElementName = row[0].Trim();
-                Element rowElement = Resources.Load<Element>("Elements/" + rowElementName);
-
-                // Loop through the rest of the columns
-                for (int i = 1; i < row.Length; i++)
-                {
-                    if (!string.IsNullOrEmpty(row[i].Trim()))
-                    {
-                        string columnElementName = headers[i - 1];
-                        Element columnElement = Resources.Load<Element>("Elements/" + columnElementName);
-                        Element resultElement = Resources.Load<Element>("Elements/" + row[i].Trim());
-
-                        // Add the combination to the dictionary
-                        AddCombination(rowElement, columnElement, resultElement);
-                    }
-                }
-            }
-        }
-    }
-
-    public void AddCombination(Element element1, Element element2, Element result)
-    {
-        if (element1 == null || element2 == null || result == null)
-        {
-            Debug.LogError("Null Element passed to AddCombination: " +
-                (element1 != null ? element1.elementName : "null") + " + " +
-                (element2 != null ? element2.elementName : "null") + " = " +
-                (result != null ? result.elementName : "null"));
+            Debug.LogError("CSV file not found in Resources folder.");
             return;
         }
 
-        string key1 = element1.elementName + "+" + element2.elementName;
-        string key2 = element2.elementName + "+" + element1.elementName;
+        StringReader reader = new StringReader(csvFile.text);
 
-        if (!combinations.ContainsKey(key1))
-        {
-            Debug.Log("Adding combination: " + key1 + " = " + result.elementName);
-            combinations.Add(key1, result);
-        }
+        string line;
+        bool firstLine = true;
 
-        if (!combinations.ContainsKey(key2))
+        while ((line = reader.ReadLine()) != null)
         {
-            Debug.Log("Adding combination: " + key2 + " = " + result.elementName);
-            combinations.Add(key2, result);
+            // Skip the first line if it's the header
+            if (firstLine)
+            {
+                firstLine = false;
+                continue;
+            }
+
+            // Split the line into three parts: Element1, Element2, Result
+            string[] row = line.Split(',');
+
+            if (row.Length != 3)
+            {
+                Debug.LogError("Invalid row in CSV: " + line);
+                continue;
+            }
+
+            string element1Name = row[0].Trim();
+            string element2Name = row[1].Trim();
+            string resultName = row[2].Trim();
+
+            // Load the ScriptableObjects for the elements and the result
+            Element element1 = Resources.Load<Element>("Elements/" + element1Name);
+            Element element2 = Resources.Load<Element>("Elements/" + element2Name);
+            Element result = Resources.Load<Element>("Elements/" + resultName);
+
+            // Log errors if any element or result is missing
+            if (element1 == null || element2 == null || result == null)
+            {
+                Debug.LogError($"Error loading elements from CSV: {element1Name}, {element2Name}, or {resultName} is missing.");
+                continue;
+            }
+
+            // Add the combination to the dictionary
+            AddCombination(element1, element2, result);
         }
     }
 
-    public Element GetCombinationResult(Element element1, Element element2)
+    // Adds the combination to the dictionary, with debug logs
+    private void AddCombination(Element element1, Element element2, Element result)
+    {
+        if (element1 == null || element2 == null || result == null)
+        {
+            Debug.LogError($"Null Element passed to AddCombination: {element1?.elementName} + {element2?.elementName} = {result?.elementName}");
+            return;
+        }
+
+        // Add combination in both directions (e.g., Fire + Water = Steam, Water + Fire = Steam)
+        combinations[(element1, element2)] = result;
+        combinations[(element2, element1)] = result;
+
+        // Debug logs for tracking which combinations were added
+        Debug.Log($"Combination added: {element1.elementName} + {element2.elementName} = {result.elementName}");
+    }
+
+    // Check for the result of combining two elements
+    public Element GetResult(Element element1, Element element2)
     {
         string key = element1.elementName + "+" + element2.elementName;
-        if (combinations.ContainsKey(key))
+
+        if (combinations.TryGetValue((element1, element2), out Element result))
         {
-            return combinations[key];
+            return result;
         }
-        return null;
+        return null; // No combination found
     }
 }

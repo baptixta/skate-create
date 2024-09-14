@@ -16,7 +16,14 @@ public class InteractionManager : MonoBehaviour
     {
         if (selectedCard != null && hoveredCard != null)
         {
-            Element combination = CombinationManager.instance.GetCombinationResult(selectedCard.element, hoveredCard.element);
+            if (selectedCard.element == null || hoveredCard.element == null)
+            {
+                Debug.LogError("One of the elements is null!");
+                return;
+            }
+
+            Element combination = CombinationManager.instance.GetResult(selectedCard.element, hoveredCard.element);
+
             if (combination != null)
             {
                 Destroy(hoveredCard.gameObject);
