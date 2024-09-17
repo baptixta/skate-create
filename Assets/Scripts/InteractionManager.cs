@@ -52,6 +52,9 @@ public class InteractionManager : MonoBehaviour
                 print("unlocked combination");
                 ElementCard unlockedCombination = Instantiate(cardPrefab, elementsContainer).GetComponent<ElementCard>();
                 unlockedCombination.UpdateElement(combination);
+
+                availableElements = transform.GetComponentsInChildren<ElementCard>();
+
             }
             else
             {
