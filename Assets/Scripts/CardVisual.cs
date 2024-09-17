@@ -18,6 +18,7 @@ public class CardVisual : MonoBehaviour
         parentCard.OnHover.AddListener(OnHover);
         parentCard.OnSelect.AddListener(OnSelect);
         parentCard.OnElementChange.AddListener(OnElementChange);
+        parentCard.OnCombination.AddListener(OnCombination);
 
     }
 
@@ -34,5 +35,15 @@ public class CardVisual : MonoBehaviour
     private void OnElementChange()
     {
         cardLabel.text = parentCard.element.name;
+    }
+
+    private void OnCombination()
+    {
+        transform.DOPunchRotation(Vector3.one * 60, .2f, 10, 1);
+    }
+
+    private void OnDestroy()
+    {
+        DOTween.Complete(transform);
     }
 }
