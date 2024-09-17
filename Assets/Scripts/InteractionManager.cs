@@ -8,9 +8,19 @@ public class InteractionManager : MonoBehaviour
     public ElementCard selectedCard = null;
     public ElementCard hoveredCard = null;
 
+    public Transform elementsContainer;
+    private ElementCard[] availableElements;
+    public GameObject cardPrefab;
+
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        availableElements = transform.GetComponentsInChildren<ElementCard>();
+
     }
 
     internal void TryInteraction()
@@ -30,6 +40,18 @@ public class InteractionManager : MonoBehaviour
                 Destroy(hoveredCard.gameObject);
                 selectedCard.UpdateElement(combination);
                 selectedCard.CombinationComplete();
+
+                //check if element exists in list
+                for (int i = 0; i < availableElements.Length; i++)
+                {
+                    if (availableElements[i].element == combination)
+                        return;
+                }
+
+                //unlock
+                print("unlocked combination");
+                ElementCard unlockedCombination = Instantiate(cardPrefab, elementsContainer).GetComponent<ElementCard>();
+                unlockedCombination.UpdateElement(combination);
             }
             else
             {

@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: {fileID: 11400000, guid: a80befa2209c94b3294e76dec0f0b649, type: 2}
+  startDragPos: {x: 0, y: 0}
   OnSelect:
     m_PersistentCalls:
       m_Calls: []
@@ -68,6 +69,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnElementChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCombination:
     m_PersistentCalls:
       m_Calls: []
 --- !u!225 &4514975400679591025
@@ -103,7 +107,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 1, g: 0.5801887, b: 0.5801887, a: 1}
