@@ -13,7 +13,7 @@ public class CombinationManager : MonoBehaviour
     }
     private void Start()
     {
-        LoadCombinationsFromCSV("combinations3");
+        LoadCombinationsFromCSV("combinations");
     }
 
     // Load the combinations from the simplified CSV format
