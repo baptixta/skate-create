@@ -84,7 +84,7 @@ public class CombinationManager : MonoBehaviour
         combinations[(element2, element1)] = result;
 
         // Debug logs for tracking which combinations were added
-        Debug.Log($"Combination added: {element1.elementName} + {element2.elementName} = {result.elementName}");
+        //Debug.Log($"Combination added: {element1.elementName} + {element2.elementName} = {result.elementName}");
     }
 
     // Check for the result of combining two elements
