@@ -5,7 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject elementCardPrefab;
     [SerializeField] private Transform elementContainer;
+    [SerializeField] private Scrollbar verticalScroll;
     [SerializeField] private TextMeshProUGUI unlockedLabel;
 
     [Header("Unlocked")]
@@ -94,7 +97,6 @@ public class GameManager : MonoBehaviour
             if (i != unlockedElements.Length - 1)
                 initialElements += ",";
         }
-        //print(initialElements);
 
         ES3.Save<string>("unlockedElements", initialElements);
     }
@@ -116,10 +118,21 @@ public class GameManager : MonoBehaviour
 
         ElementCard unlockedCard = Instantiate(elementCardPrefab, elementContainer).GetComponent<ElementCard>();
         unlockedCard.UpdateElement(combination, true);
-
         UpdateDiscoveryLabel();
+        StartCoroutine(ScrollToUnlockedElement());
 
         Save();
+    }
+
+    IEnumerator ScrollToUnlockedElement()
+    {
+        yield return new WaitForEndOfFrame();
+        DOVirtual.Float(verticalScroll.value, 0, .2f, SetVerticalScroll);
+    }
+
+    public void SetVerticalScroll(float value)
+    {
+        verticalScroll.value = value;
     }
 
     private void UpdateDiscoveryLabel()
