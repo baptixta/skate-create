@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8699d5c604a024c54878266db45a047d, type: 3}
-  m_Name: Rotate Body 180 (Frontside)
+  m_Name: Body 180 (Backside)
   m_EditorClassIdentifier: 
-  elementName: Rotate Body 180 (Frontside)
+  elementName: Body 180 (Backside)
   icon: {fileID: 0}
   originCombination: 
