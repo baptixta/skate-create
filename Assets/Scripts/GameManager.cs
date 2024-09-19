@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -16,11 +18,27 @@ public class GameManager : MonoBehaviour
 
     [Header("Unlocked")]
     [SerializeField] private Element[] unlockedElements;
+    [Header("Debug Input")]
+    public InputActionReference resetAction;
 
 
     private void Awake()
     {
         instance = this;
+
+        resetAction.action.performed += ResetAction_performed;
+    }
+
+    private void OnDisable()
+    {
+        resetAction.action.performed -= ResetAction_performed;
+    }
+
+    private void ResetAction_performed(InputAction.CallbackContext context)
+    {
+        LoadInitialElementsFromCSV("initialElements");
+        Save();
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Start()
