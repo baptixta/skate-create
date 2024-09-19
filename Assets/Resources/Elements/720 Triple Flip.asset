@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: 720 Triple Flip
   icon: {fileID: 0}
+  originCombination: 

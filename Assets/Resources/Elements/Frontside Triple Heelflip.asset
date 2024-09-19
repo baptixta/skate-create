@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Frontside Triple Heelflip
   icon: {fileID: 0}
+  originCombination: 

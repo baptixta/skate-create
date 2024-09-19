@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Frontside Double Flip
   icon: {fileID: 0}
+  originCombination: 

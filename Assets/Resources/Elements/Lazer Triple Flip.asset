@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Lazer Triple Flip
   icon: {fileID: 0}
+  originCombination: 

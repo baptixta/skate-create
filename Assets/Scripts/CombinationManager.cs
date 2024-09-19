@@ -11,6 +11,7 @@ public class CombinationManager : MonoBehaviour
     {
         instance = this;
     }
+
     private void Start()
     {
         LoadCombinationsFromCSV("combinations");
@@ -83,15 +84,16 @@ public class CombinationManager : MonoBehaviour
         combinations[(element1, element2)] = result;
         combinations[(element2, element1)] = result;
 
+        // Set the originCombination field in the result element
+        result.originCombination = $"{element1.elementName},{element2.elementName}";
+
         // Debug logs for tracking which combinations were added
-        //Debug.Log($"Combination added: {element1.elementName} + {element2.elementName} = {result.elementName}");
+        Debug.Log($"Combination added: {element1.elementName} + {element2.elementName} = {result.elementName}");
     }
 
     // Check for the result of combining two elements
     public Element GetResult(Element element1, Element element2)
     {
-        string key = element1.elementName + "+" + element2.elementName;
-
         if (combinations.TryGetValue((element1, element2), out Element result))
         {
             return result;

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Spin Skate 180 (Backside)
   icon: {fileID: 0}
+  originCombination: 

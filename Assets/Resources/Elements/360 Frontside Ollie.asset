@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: 360 Frontside Ollie
   icon: {fileID: 0}
+  originCombination: 
