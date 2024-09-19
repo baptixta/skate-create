@@ -5,4 +5,5 @@ public class Element : ScriptableObject
 {
     public string elementName;
     public Sprite icon;
+    public string originCombination = string.Empty;
 }

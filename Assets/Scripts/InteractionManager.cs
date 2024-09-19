@@ -5,6 +5,7 @@ public class InteractionManager : MonoBehaviour
 {
     public static InteractionManager instance { get; private set; }
 
+    [Header("Card Logic")]
     public ElementCard selectedCard = null;
     public ElementCard hoveredCard = null;
 

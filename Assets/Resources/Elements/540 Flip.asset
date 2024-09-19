@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: 540 Flip
   icon: {fileID: 0}
+  originCombination: 

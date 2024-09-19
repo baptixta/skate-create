@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Triple Hardflip
   icon: {fileID: 0}
+  originCombination: 

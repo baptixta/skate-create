@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: 180 Backside Heelflip
   icon: {fileID: 0}
+  originCombination: 

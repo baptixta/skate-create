@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: 360 Triple Inward Heelflip
   icon: {fileID: 0}
+  originCombination: 

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Pop Shovit
   icon: {fileID: 0}
+  originCombination: 

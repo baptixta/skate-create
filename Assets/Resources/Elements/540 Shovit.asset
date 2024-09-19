@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: 540 Shovit
   icon: {fileID: 0}
+  originCombination: 
