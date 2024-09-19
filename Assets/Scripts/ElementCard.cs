@@ -9,13 +9,12 @@ public class ElementCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     public Element element;
     private CanvasGroup canvasGroup;
 
-    public Vector2 startDragPos;
-
     [Header("Events")]
     [HideInInspector] public UnityEvent OnSelect;
     [HideInInspector] public UnityEvent<bool> OnHover;
     [HideInInspector] public UnityEvent OnElementChange;
     [HideInInspector] public UnityEvent OnCombination;
+    [HideInInspector] public UnityEvent<bool> OnUnlock;
 
     private Vector2 offset;
 
@@ -27,9 +26,14 @@ public class ElementCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        //TODO Do this with events dummy
+        if (GetComponentInChildren<CardVisual>() != null)
+        {
+            if (GetComponentInChildren<CardVisual>().newElementIndicator.activeSelf)
+                GetComponentInChildren<CardVisual>().newElementIndicator.SetActive(false);
+        }
 
         offset = (Vector2)transform.position - Mouse.current.position.value;
-        startDragPos = transform.position;
 
         if (GetComponentInParent<CardContainer>() != null)
         {
@@ -81,11 +85,19 @@ public class ElementCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             InteractionManager.instance.hoveredCard = null;
     }
 
-
-    public void UpdateElement(Element element)
+    public void UpdateElement(Element element, bool unlocked = false)
     {
         this.element = element;
         OnElementChange.Invoke();
+
+        if (!unlocked)
+            return;
+
+        //TODO Do this with events dummy
+        if (GetComponentInChildren<CardVisual>() != null)
+        {
+            GetComponentInChildren<CardVisual>().newElementIndicator.SetActive(true);
+        }
     }
 
     public void CombinationComplete()

@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-using System.Collections.Generic;
-
 public class ElementBatchCreator : EditorWindow
 {
     private TextAsset csvFile;  // CSV file reference

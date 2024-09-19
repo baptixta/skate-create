@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,11 +22,12 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
     }
+
     void Start()
     {
         LoadInitialElementsFromCSV("initialElements");
 
-        if ((ES3.KeyExists("unlockedElements")))
+        if (ES3.KeyExists("unlockedElements"))
             Load();
         else
             Save();
@@ -38,34 +40,29 @@ public class GameManager : MonoBehaviour
             card.gameObject.name = card.element.elementName;
         }
 
-
-        UpdateUnlockedLabel();
+        UpdateDiscoveryLabel();
 
     }
 
     private void Load()
     {
         print("save file exists");
+
         string[] elementNames = ES3.Load<string>("unlockedElements").Split(',');
         List<Element> elementsList = new List<Element>();
-        // Loop through the element names and load the corresponding scriptable objects
+
         foreach (string elementName in elementNames)
         {
-            // Trim any extra whitespace
-            string trimmedName = elementName.Trim();
 
-            // Load the element from the Resources folder
+            string trimmedName = elementName.Trim();
             Element element = Resources.Load<Element>("Elements/" + trimmedName);
 
             if (element != null)
-            {
                 elementsList.Add(element);
-            }
             else
-            {
                 Debug.LogError($"Element '{trimmedName}' not found in Resources.");
-            }
         }
+
         unlockedElements = elementsList.ToArray();
     }
 
@@ -79,7 +76,7 @@ public class GameManager : MonoBehaviour
             if (i != unlockedElements.Length - 1)
                 initialElements += ",";
         }
-        print(initialElements);
+        //print(initialElements);
 
         ES3.Save<string>("unlockedElements", initialElements);
     }
@@ -100,14 +97,14 @@ public class GameManager : MonoBehaviour
         unlockedElements = newArray;
 
         ElementCard unlockedCard = Instantiate(elementCardPrefab, elementContainer).GetComponent<ElementCard>();
-        unlockedCard.UpdateElement(combination);
+        unlockedCard.UpdateElement(combination, true);
 
-        UpdateUnlockedLabel();
+        UpdateDiscoveryLabel();
 
         Save();
     }
 
-    private void UpdateUnlockedLabel()
+    private void UpdateDiscoveryLabel()
     {
         unlockedLabel.text = unlockedElements.Length.ToString() + "/" + GetUniqueElementCountFromCSV("combinations").ToString();
     }
@@ -148,51 +145,6 @@ public class GameManager : MonoBehaviour
         unlockedElements = elementList.ToArray();
 
         Debug.Log($"Loaded {unlockedElements.Length} initial elements.");
-    }
-
-    public class CombinationManager : MonoBehaviour
-    {
-        public int GetUniqueElementCountFromCSV(string fileName)
-        {
-            // Load the CSV file from Resources
-            TextAsset csvFile = Resources.Load<TextAsset>(fileName);
-            if (csvFile == null)
-            {
-                Debug.LogError("CSV file not found.");
-                return 0;
-            }
-
-            StringReader reader = new StringReader(csvFile.text);
-            HashSet<string> uniqueElements = new HashSet<string>();
-
-            string line;
-            bool firstLine = true;
-            while ((line = reader.ReadLine()) != null)
-            {
-                // Skip the first line if it's a header
-                if (firstLine)
-                {
-                    firstLine = false;
-                    continue;
-                }
-
-                // Split the line by comma to get the element names (Assuming CSV format is: Element1,Element2,Result)
-                string[] parts = line.Split(',');
-
-                if (parts.Length >= 2)
-                {
-                    string element1 = parts[0].Trim();
-                    string element2 = parts[1].Trim();
-
-                    // Add element1 and element2 to the HashSet
-                    uniqueElements.Add(element1);
-                    uniqueElements.Add(element2);
-                }
-            }
-
-            // Return the count of unique elements
-            return uniqueElements.Count;
-        }
     }
 
     public int GetUniqueElementCountFromCSV(string fileName)

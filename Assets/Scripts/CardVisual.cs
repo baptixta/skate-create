@@ -1,11 +1,14 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
+using System;
 
 public class CardVisual : MonoBehaviour
 {
     private ElementCard parentCard;
     private TextMeshProUGUI cardLabel;
+    public GameObject newElementIndicator;
 
     void Start()
     {
@@ -46,4 +49,5 @@ public class CardVisual : MonoBehaviour
     {
         DOTween.Complete(transform);
     }
+
 }
