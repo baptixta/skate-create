@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8699d5c604a024c54878266db45a047d, type: 3}
-  m_Name: Frontside Double Flip
+  m_Name: 180 Double Frontside Flip
   m_EditorClassIdentifier: 
-  elementName: Frontside Double Flip
+  elementName: 180 Double Frontside Flip
   icon: {fileID: 0}

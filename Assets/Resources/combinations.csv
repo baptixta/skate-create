@@ -7,13 +7,15 @@ Rotate Body 180 (Backside),180 Backside Ollie,360 Backside Ollie
 360 Backside Ollie,Rotate Body 180 (Backside),540 Backside Ollie
 540 Backside Ollie,180 Backside Ollie,720 Backside Ollie
 540 Backside Ollie,Rotate Body 180 (Backside),720 Backside Ollie
+360 Backside Ollie,360 Backside Ollie,720 Backside Ollie
 Rotate Body 180 (Frontside),Ollie,180 Frontside Ollie
 Rotate Body 180 (Frontside),180 Frontside Ollie,360 Frontside Ollie
 180 Frontside Ollie,180 Frontside Ollie,360 Frontside Ollie
 360 Frontside Ollie,180 Frontside Ollie,540 Frontside Ollie
 360 Frontside Ollie,Rotate Body 180 (Frontside),540 Frontside Ollie
-540 Frontside Ollie,180 Frontside Ollie,720 Backside Ollie
-540 Frontside Ollie,Rotate Body 180 (Frontside),720 Backside Ollie
+540 Frontside Ollie,180 Frontside Ollie,720 Frontside Ollie
+540 Frontside Ollie,Rotate Body 180 (Frontside),720 Frontside Ollie
+360 Frontside Ollie,360 Frontside Ollie,720 Frontside Ollie
 Ollie,Spin Skate 180 (Backside),Varial
 Pop Tail,Spin Skate 180 (Backside),Varial
 Varial,Varial,360 Varial
@@ -29,6 +31,7 @@ Rotate Body 180 (Backside),Backside Biggerspin,Backside Gazelle Spin
 Ollie,Spin Skate 180 (Frontside),Pop Shovit
 Pop Tail,Spin Skate 180 (Frontside),Pop Shovit
 Pop Shovit,Pop Shovit,360 Pop Shovit
+Pop Shovit,Spin Skate 180 (Frontside),360 Pop Shovit
 360 Shovit,Pop Shovit,540 Pop Shovit
 540 Shovit,Pop Shovit,720 Pop Shovit
 720 Shovit,Pop Shovit,900 Pop Shovit
@@ -41,18 +44,23 @@ Kick,Ollie,Flip
 Flip,Flip,Double Flip
 Double Flip,Flip,Triple Flip
 Triple Flip,Flip,Quadruple Flip
+Double Flip,Double Flip,Quadruple Flip
 Rotate Body 180 (Backside),Flip,180 Backside Flip
+180 Backside Ollie,Flip,180 Backside Flip
 180 Backside Flip ,Flip,180 Backside Double Flip
 180 Double Backside Flip,Flip,180 Backside Triple Flip
 180 Triple Backside Flip,Flip,180 Backside Quadruple Flip
-Rotate Body 180 (Frontside),Flip,Frontside Flip
-Frontside Flip ,Flip,Frontside Double Flip
-Double Frontside Flip,Flip,Frontside Triple Flip
-Triple Frontside Flip,Flip,Frontside Quadruple Flip
+Rotate Body 180 (Frontside),Flip,180 Frontside Flip
+180 Frontside Ollie,Flip,180 Frontside Flip
+180 Frontside Flip ,Flip,180 Frontside Double Flip
+180 Double Frontside Flip,Flip,180 Frontside Triple Flip
+180 Triple Frontside Flip,Flip,180 Frontside Quadruple Flip
 Flip,Varial,Varial Flip
+Flip,Spin Skate 180 (Backside),Varial Flip
 Varial Flip,Flip,Varial Double Flip
 Varial Flip,Spin Skate 180 (Backside),360 Flip
 360 Varial,Flip,360 Flip
+Varial Flip,Varial,360 Flip
 360 Flip,Flip,360 Double Flip
 360 Double Flip,Flip,360 Triple Flip
 360 Triple Flip,Flip,360 Quadruple Flip
@@ -69,6 +77,7 @@ Varial Flip,Spin Skate 180 (Backside),360 Flip
 900 Double Flip,Flip,900 Triple Flip
 900 Triple Flip,Flip,900 Quadruple Flip
 Flip,Pop Shovit,Hardflip
+Flip,Spin Skate 180 (Frontside),Hardflip
 Hardflip,Flip,Double Hardflip
 Double Hardflip,Flip,Triple Hardflip
 Triple Hardflip,Flip,Quadruple Hardflip
@@ -84,20 +93,26 @@ Heel,Ollie,Heelflip
 Heelflip,Heelflip,Double Heelflip
 Double Heelflip,Heelflip,Triple Heelflip
 Triple Heelflip,Heelflip,Quadruple Heelflip
+Double Heelflip,Double Heelflip,Quadruple Heelflip
 Rotate Body 180 (Backside),Heelflip,180 Backside Heelflip
+180 Backside Ollie,Heelflip,180 Backside Heelflip
 180 Backside Heelflip ,Heelflip,180 Backside Double Heelflip
 180 Backside Double Heelflip,Heelflip,180 Backside Triple Heelflip
 180 Backside Triple Heelflip,Heelflip,180 Backside Quadruple Heelflip
 Rotate Body 180 (Frontside),Heelflip,Frontside Heelflip
+180 Frontside Ollie,Heelflip,Frontside Heelflip
 Frontside Heelflip ,Heelflip,Frontside Double Heelflip
 Double Frontside Heelflip,Heelflip,Frontside Triple Heelflip
 Triple Frontside Heelflip,Heelflip,Frontside Quadruple Heelflip
 Pop Shovit,Heelflip,Shovit Heelflip
+Spin Skate 180 (Frontside),Heelflip,Shovit Heelflip
 Shovit Heelflip,Pop Shovit,Lazer Flip
+Heelflip,360 Pop Shovit,Lazer Flip
 Lazer Flip,Heelflip,Lazer Double Flip
 Lazer Double Flip,Heelflip,Lazer Triple Flip
 Lazer Triple Flip,Heelflip,Lazer Quadruple Flip
 Heelflip,Varial,Inward Heelflip
+Heelflip,Spin Skate 180 (Backside),Inward Heelflip
 Inward Heelflip,Heelflip,Double Inward Heelflip
 Double Inward Heelflip,Heelflip,Triple Inward Heelflip
 Triple Inward Heelflip,Heelflip,Quadruple Inward Heelflip
@@ -106,4 +121,3 @@ Inward Heelflip,Spin Skate 180 (Frontside),360 Inward Heelflip
 360 Double Inward Heelflip,Heelflip,360 Triple Inward Heelflip
 360 Triple Inward Heelflip,Heelflip,360 Quadruple Inward Heelflip
 Pop Nose,Ollie,Nollie
-Jump,Pop Tail,Nollie
