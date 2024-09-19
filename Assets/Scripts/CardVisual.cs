@@ -6,7 +6,7 @@ using System;
 
 public class CardVisual : MonoBehaviour
 {
-    private ElementCard parentCard;
+    private Card parentCard;
     private TextMeshProUGUI cardLabel;
     public GameObject newElementIndicator;
 
@@ -37,7 +37,7 @@ public class CardVisual : MonoBehaviour
 
     private void OnElementChange()
     {
-        cardLabel.text = parentCard.element.name;
+        cardLabel.text = parentCard.GetComponent<ElementCard>().element.name;
     }
 
     private void OnCombination()
