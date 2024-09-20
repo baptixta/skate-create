@@ -1,5 +1,9 @@
 Element 1,Element 2,Result
 Jump,Pop Tail,Ollie
+Ollie,Ollie,Double Ollie
+Double Ollie,Ollie,Triple Ollie
+Double Ollie,Double Ollie,Quadruple Ollie
+Triple Ollie,Ollie,Quadruple Ollie
 Body 180 (Backside),Ollie,180 Backside Ollie
 Body 180 (Backside),180 Backside Ollie,360 Backside Ollie
 180 Backside Ollie,180 Backside Ollie,360 Backside Ollie
@@ -48,11 +52,13 @@ Double Flip,Double Flip,Quadruple Flip
 Body 180 (Backside),Flip,180 Backside Flip
 180 Backside Ollie,Flip,180 Backside Flip
 180 Backside Flip ,Flip,180 Backside Double Flip
+180 Backside Flip ,180 Backside Flip ,180 Backside Double Flip
 180 Double Backside Flip,Flip,180 Backside Triple Flip
 180 Triple Backside Flip,Flip,180 Backside Quadruple Flip
 Body 180 (Frontside),Flip,180 Frontside Flip
 180 Frontside Ollie,Flip,180 Frontside Flip
 180 Frontside Flip ,Flip,180 Frontside Double Flip
+180 Frontside Flip ,180 Frontside Flip ,180 Frontside Double Flip
 180 Double Frontside Flip,Flip,180 Frontside Triple Flip
 180 Triple Frontside Flip,Flip,180 Frontside Quadruple Flip
 Flip,Varial,Varial Flip
@@ -69,6 +75,7 @@ Varial Flip,Varial,360 Flip
 540 Double Flip,Flip,540 Triple Flip
 540 Triple Flip,Flip,540 Quadruple Flip
 540 Flip,Skate 180 (Backside),720 Flip
+360 Flip,360 Flip,720 Flip
 720 Flip,Flip,720 Double Flip
 720 Double Flip,Flip,720 Triple Flip
 720 Triple Flip,Flip,720 Quadruple Flip
@@ -83,7 +90,9 @@ Hardflip,Hardflip,Double Hardflip
 Double Hardflip,Flip,Triple Hardflip
 Triple Hardflip,Flip,Quadruple Hardflip
 Body 180 (Backside),Hardflip,Backside Ghetto Bird
+180 Backside Ollie,Hardflip,Backside Ghetto Bird
 Body 180 (Frontside),Hardflip,Frontside Ghetto Bird
+180 Frontside Ollie,Hardflip,Frontside Ghetto Bird
 Hardflip,Skate 180 (Frontside),360 Hardflip
 360 Pop Shovit,Flip,360 Hardflip
 360 Hardflip,Flip,360 Double Hardflip
@@ -91,6 +100,7 @@ Hardflip,Skate 180 (Frontside),360 Hardflip
 360 Triple Hardflip,Flip,360 Quadruple Hardflip
 Heel,Pop Tail,Heelflip
 Heel,Ollie,Heelflip
+Heel,Flip,Heelflip
 Heelflip,Heelflip,Double Heelflip
 Double Heelflip,Heelflip,Triple Heelflip
 Triple Heelflip,Heelflip,Quadruple Heelflip
@@ -110,6 +120,7 @@ Skate 180 (Frontside),Heelflip,Shovit Heelflip
 Shovit Heelflip,Pop Shovit,Lazer Flip
 Heelflip,360 Pop Shovit,Lazer Flip
 Lazer Flip,Heelflip,Lazer Double Flip
+Lazer Flip,Lazer Flip,Lazer Double Flip
 Lazer Double Flip,Heelflip,Lazer Triple Flip
 Lazer Triple Flip,Heelflip,Lazer Quadruple Flip
 Heelflip,Varial,Inward Heelflip
@@ -118,7 +129,8 @@ Inward Heelflip,Heelflip,Double Inward Heelflip
 Inward Heelflip,Inward Heelflip,Double Inward Heelflip
 Double Inward Heelflip,Heelflip,Triple Inward Heelflip
 Triple Inward Heelflip,Heelflip,Quadruple Inward Heelflip
-Inward Heelflip,Skate 180 (Frontside),360 Inward Heelflip
+Inward Heelflip,Skate 180 (Backside),360 Inward Heelflip
+Inward Heelflip,Varial,360 Inward Heelflip
 360 Inward Heelflip,Heelflip,360 Double Inward Heelflip
 360 Double Inward Heelflip,Heelflip,360 Triple Inward Heelflip
 360 Triple Inward Heelflip,Heelflip,360 Quadruple Inward Heelflip
