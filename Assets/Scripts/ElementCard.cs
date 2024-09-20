@@ -4,19 +4,29 @@ using UnityEngine.EventSystems;
 [SelectionBase]
 public class ElementCard : Card
 {
+    [Header("Scriptable")]
     public Element element;
+
+    public override void Start()
+    {
+        base.Start();
+
+        OnElementChange.Invoke(element.elementName);
+    }
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
         base.OnBeginDrag(eventData);
 
+        //Create clone
         if (GetComponentInParent<CardContainer>() != null)
         {
-            GameObject clone = Instantiate(gameObject, transform.parent);
+            Card clone = Instantiate(gameObject, transform.parent).GetComponent<Card>();
             clone.transform.SetSiblingIndex(transform.GetSiblingIndex());
-            clone.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            clone.canvasGroup.blocksRaycasts = true;
         }
 
+        //Make canvas direct parent to overlay everything
         transform.SetParent(GetComponentInParent<Canvas>().transform);
     }
 
@@ -28,6 +38,7 @@ public class ElementCard : Card
 
     override public void OnEndDrag(PointerEventData eventData)
     {
+        InteractionManager.instance.TryInteraction();
 
         transform.SetParent(MixArea.instance.transform);
 
@@ -45,7 +56,8 @@ public class ElementCard : Card
     public void UpdateElement(Element element, bool unlocked = false)
     {
         this.element = element;
-        OnElementChange.Invoke();
+
+        OnElementChange.Invoke(element.elementName);
 
         if (!unlocked)
             return;
@@ -55,6 +67,13 @@ public class ElementCard : Card
         {
             GetComponentInChildren<CardVisual>().newElementIndicator.SetActive(true);
         }
+    }
+
+    public override void OnPointerDown(PointerEventData eventData)
+    {
+        base.OnPointerDown(eventData);
+        if (GetComponentInParent<CardContainer>() == null && eventData.button == PointerEventData.InputButton.Right)
+            Destroy(gameObject);
     }
 
     public void CombinationComplete()

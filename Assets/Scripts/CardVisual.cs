@@ -1,8 +1,6 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
-using UnityEngine.UI;
-using System;
 
 public class CardVisual : MonoBehaviour
 {
@@ -10,19 +8,15 @@ public class CardVisual : MonoBehaviour
     private TextMeshProUGUI cardLabel;
     public GameObject newElementIndicator;
 
-    void Start()
+    void Awake()
     {
-        parentCard = GetComponentInParent<ElementCard>();
+        parentCard = GetComponentInParent<Card>();
         cardLabel = GetComponentInChildren<TextMeshProUGUI>();
-
-        OnElementChange();
 
         //Event Listening
         parentCard.OnHover.AddListener(OnHover);
         parentCard.OnSelect.AddListener(OnSelect);
         parentCard.OnElementChange.AddListener(OnElementChange);
-        parentCard.OnCombination.AddListener(OnCombination);
-
     }
 
     private void OnHover(bool hover)
@@ -35,19 +29,14 @@ public class CardVisual : MonoBehaviour
         transform.DOScale(1.2f, .2f).SetEase(Ease.OutBack);
     }
 
-    private void OnElementChange()
-    {
-        cardLabel.text = parentCard.GetComponent<ElementCard>().element.name;
-    }
-
-    private void OnCombination()
-    {
-        transform.DOPunchRotation(Vector3.one * 60, .2f, 10, 1);
-    }
-
     private void OnDestroy()
     {
         DOTween.Complete(transform);
+    }
+
+    private void OnElementChange(string elementName)
+    {
+        cardLabel.text = elementName;
     }
 
 }

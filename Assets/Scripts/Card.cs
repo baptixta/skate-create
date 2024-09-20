@@ -10,13 +10,13 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public CanvasGroup canvasGroup;
     [HideInInspector] public UnityEvent OnSelect;
     [HideInInspector] public UnityEvent<bool> OnHover;
-    [HideInInspector] public UnityEvent OnElementChange;
+    [HideInInspector] public UnityEvent<string> OnElementChange;
     [HideInInspector] public UnityEvent OnCombination;
     [HideInInspector] public UnityEvent<bool> OnUnlock;
 
     public Vector2 offset;
 
-    void Start()
+    public virtual void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
     }
@@ -54,9 +54,5 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        if (GetComponentInParent<CardContainer>() == null && eventData.button == PointerEventData.InputButton.Right)
-        {
-            Destroy(gameObject);
-        }
     }
 }
