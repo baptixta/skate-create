@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -14,13 +15,20 @@ public class InteractionManager : MonoBehaviour
         instance = this;
     }
 
+    //Try Interaction between two cards
     internal void TryInteraction()
     {
         if (selectedCard != null && hoveredCard != null)
         {
 
+            //If both cards are elements
             if (selectedCard.GetComponent<ElementCard>() != null && hoveredCard.GetComponent<ElementCard>() != null)
             {
+                if (hoveredCard.GetComponentInParent<CardContainer>() != null)
+                {
+                    Destroy(selectedCard.gameObject);
+                    return;
+                }
 
                 ElementCard selectedElementCard = selectedCard.GetComponent<ElementCard>();
                 ElementCard hoveredElementCard = hoveredCard.GetComponent<ElementCard>();
@@ -35,41 +43,91 @@ public class InteractionManager : MonoBehaviour
                 if (combination != null)
                 {
                     GameManager.instance.TryUnlockCombination(combination);
+                    selectedElementCard.UpdateElement(combination);
+                    selectedElementCard.CombinationComplete();
                     Destroy(hoveredCard.gameObject);
                 }
                 else
                 {
                     print("no combination");
+                    NegativeFeedback(hoveredCard.transform);
+                }
+            }
 
-                    // Generate a random offset to push the card in a random direction
-                    Vector3 randomDirection = new Vector3(Random.Range(-200, 200), Random.Range(-200, 200), 0);
+            //If we are dragging an Element to the delete card
+            if (hoveredCard.GetComponent<ActionCard>() && selectedCard.GetComponent<ElementCard>())
+            {
+                ActionCard actionCard = hoveredCard.GetComponent<ActionCard>();
 
-                    // Get the local position of hoveredCard relative to the MixArea
-                    Vector3 localPos = MixArea.instance.rectTransform.InverseTransformPoint(hoveredCard.transform.position);
+                if (actionCard.actionType == ActionCard.ActionType.delete)
+                {
+                    Destroy(selectedCard.gameObject);
+                }
 
-                    // Apply the random direction in local space
-                    Vector3 targetLocalPos = localPos + randomDirection;
+                if (actionCard.actionType == ActionCard.ActionType.divide)
+                {
+                    // if (elementCard.element.originCombination != string.Empty)
+                    // {
+                    //     print(elementCard.element.originCombination);
+                    // }
+                }
+            }
 
-                    // Get the size of the hoveredCard RectTransform
-                    RectTransform hoveredCardRect = hoveredCard.GetComponent<RectTransform>();
-                    Vector2 cardSize = hoveredCardRect.rect.size;
+            //If we are dragging an action card to an element card
+            if (selectedCard.GetComponent<ActionCard>() && hoveredCard.GetComponent<ElementCard>())
+            {
+                ActionCard actionCard = selectedCard.GetComponent<ActionCard>();
+                ElementCard elementCard = hoveredCard.GetComponent<ElementCard>();
 
-                    // Get the boundaries of the MixArea in local space
-                    Rect mixRect = MixArea.instance.rectTransform.rect;
-
-                    // Calculate the min and max bounds for clamping, considering the card size
-                    float clampedX = Mathf.Clamp(targetLocalPos.x, mixRect.xMin + cardSize.x / 2, mixRect.xMax - cardSize.x / 2);
-                    float clampedY = Mathf.Clamp(targetLocalPos.y, mixRect.yMin + cardSize.y / 2, mixRect.yMax - cardSize.y / 2);
-
-                    // Convert the clamped local position back to world space
-                    Vector3 clampedWorldPos = MixArea.instance.rectTransform.TransformPoint(new Vector3(clampedX, clampedY, 0));
-
-                    // Move hoveredCard to the clamped world position
-                    hoveredCard.transform.DOMove(clampedWorldPos, .4f);
-
-
+                if (actionCard.actionType == ActionCard.ActionType.divide)
+                {
+                    if (elementCard.element.originCombination != string.Empty)
+                    {
+                        SplitElementCard(elementCard.element.originCombination);
+                        Destroy(hoveredCard.gameObject);
+                    }
                 }
             }
         }
+    }
+
+    public void SplitElementCard(string combination)
+    {
+        string[] elementNames = combination.Split(',');
+        List<Element> elementsList = new List<Element>();
+
+        foreach (string elementName in elementNames)
+        {
+            string trimmedName = elementName.Trim();
+            Element element = Resources.Load<Element>("Elements/" + trimmedName);
+
+            if (element != null)
+                elementsList.Add(element);
+            else
+                Debug.LogError($"Element '{trimmedName}' not found in Resources.");
+        }
+
+        foreach (Element element in elementsList)
+        {
+            //TODO do this on GameManager
+            GameObject clone = Instantiate(hoveredCard, MixArea.instance.transform).gameObject;
+            clone.GetComponent<ElementCard>().UpdateElement(element);
+            clone.GetComponent<ElementCard>().canvasGroup.blocksRaycasts = true;
+            NegativeFeedback(clone.transform);
+        }
+    }
+
+    void NegativeFeedback(Transform target)
+    {
+        Vector3 randomDirection = new Vector3(Random.Range(-200, 200), Random.Range(-200, 200), 0);
+        Vector3 localPos = MixArea.instance.rectTransform.InverseTransformPoint(hoveredCard.transform.position);
+        Vector3 targetLocalPos = localPos + randomDirection;
+        RectTransform hoveredCardRect = hoveredCard.GetComponent<RectTransform>();
+        Vector2 cardSize = hoveredCardRect.rect.size;
+        Rect mixRect = MixArea.instance.rectTransform.rect;
+        float clampedX = Mathf.Clamp(targetLocalPos.x, mixRect.xMin + cardSize.x / 2, mixRect.xMax - cardSize.x / 2);
+        float clampedY = Mathf.Clamp(targetLocalPos.y, mixRect.yMin + cardSize.y / 2, mixRect.yMax - cardSize.y / 2);
+        Vector3 clampedWorldPos = MixArea.instance.rectTransform.TransformPoint(new Vector3(clampedX, clampedY, 0));
+        target.DOMove(clampedWorldPos, .4f);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using System;
 
 public class CardVisual : MonoBehaviour
 {
@@ -17,6 +18,15 @@ public class CardVisual : MonoBehaviour
         parentCard.OnHover.AddListener(OnHover);
         parentCard.OnSelect.AddListener(OnSelect);
         parentCard.OnElementChange.AddListener(OnElementChange);
+        parentCard.OnCombination.AddListener(OnCombination);
+        parentCard.OnUnlock.AddListener(OnUnlock);
+    }
+
+    private void OnUnlock(bool unlocked)
+    {
+        newElementIndicator.SetActive(unlocked);
+        if (unlocked)
+            transform.DOScale(0, .2f).SetEase(Ease.OutBack).From();
     }
 
     private void OnHover(bool hover)
@@ -37,6 +47,11 @@ public class CardVisual : MonoBehaviour
     private void OnElementChange(string elementName)
     {
         cardLabel.text = elementName;
+    }
+
+    private void OnCombination()
+    {
+        transform.DOPunchRotation(Vector3.one * 60, .2f, 10, 1);
     }
 
 }

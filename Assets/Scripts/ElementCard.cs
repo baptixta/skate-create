@@ -42,13 +42,6 @@ public class ElementCard : Card
 
         transform.SetParent(MixArea.instance.transform);
 
-        //TODO Do this with events dummy
-        if (GetComponentInChildren<CardVisual>() != null)
-        {
-            if (GetComponentInChildren<CardVisual>().newElementIndicator.activeSelf)
-                GetComponentInChildren<CardVisual>().newElementIndicator.SetActive(false);
-        }
-
         base.OnEndDrag(eventData);
 
     }
@@ -62,11 +55,7 @@ public class ElementCard : Card
         if (!unlocked)
             return;
 
-        //TODO Do this with events dummy
-        if (GetComponentInChildren<CardVisual>() != null)
-        {
-            GetComponentInChildren<CardVisual>().newElementIndicator.SetActive(true);
-        }
+        OnUnlock.Invoke(true);
     }
 
     public override void OnPointerDown(PointerEventData eventData)
@@ -74,6 +63,13 @@ public class ElementCard : Card
         base.OnPointerDown(eventData);
         if (GetComponentInParent<CardContainer>() == null && eventData.button == PointerEventData.InputButton.Right)
             Destroy(gameObject);
+    }
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        OnUnlock.Invoke(false);
+
     }
 
     public void CombinationComplete()

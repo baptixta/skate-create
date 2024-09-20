@@ -4,16 +4,20 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
 [SelectionBase]
+[RequireComponent(typeof(CanvasGroup))]
 public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
+    [Header("References")]
+    [HideInInspector] public CanvasGroup canvasGroup;
+
     [Header("Events")]
-    public CanvasGroup canvasGroup;
     [HideInInspector] public UnityEvent OnSelect;
     [HideInInspector] public UnityEvent<bool> OnHover;
     [HideInInspector] public UnityEvent<string> OnElementChange;
     [HideInInspector] public UnityEvent OnCombination;
     [HideInInspector] public UnityEvent<bool> OnUnlock;
 
+    [Header("Variables")]
     public Vector2 offset;
 
     public virtual void Start()
