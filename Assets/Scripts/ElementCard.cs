@@ -1,115 +1,79 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.Events;
 
 [SelectionBase]
-public class ElementCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
+public class ElementCard : Card
 {
+    [Header("Scriptable")]
     public Element element;
-    private CanvasGroup canvasGroup;
 
-    [Header("Events")]
-    [HideInInspector] public UnityEvent OnSelect;
-    [HideInInspector] public UnityEvent<bool> OnHover;
-    [HideInInspector] public UnityEvent OnElementChange;
-    [HideInInspector] public UnityEvent OnCombination;
-    [HideInInspector] public UnityEvent<bool> OnUnlock;
-
-    private Vector2 offset;
-
-    void Start()
+    public override void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
+        base.Start();
+
+        OnElementChange.Invoke(element.elementName);
     }
 
-
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void OnBeginDrag(PointerEventData eventData)
     {
-        //TODO Do this with events dummy
-        if (GetComponentInChildren<CardVisual>() != null)
-        {
-            if (GetComponentInChildren<CardVisual>().newElementIndicator.activeSelf)
-                GetComponentInChildren<CardVisual>().newElementIndicator.SetActive(false);
-        }
+        base.OnBeginDrag(eventData);
 
-        offset = (Vector2)transform.position - Mouse.current.position.value;
-
+        //Create clone
         if (GetComponentInParent<CardContainer>() != null)
         {
-            GameObject clone = Instantiate(gameObject, transform.parent);
+            Card clone = Instantiate(gameObject, transform.parent).GetComponent<Card>();
             clone.transform.SetSiblingIndex(transform.GetSiblingIndex());
+            clone.canvasGroup.blocksRaycasts = true;
         }
 
+        //Make canvas direct parent to overlay everything
         transform.SetParent(GetComponentInParent<Canvas>().transform);
-        canvasGroup.blocksRaycasts = false;
-        InteractionManager.instance.selectedCard = this;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public override void OnDrag(PointerEventData eventData)
     {
-        transform.position = Mouse.current.position.value + offset;
+        base.OnDrag(eventData);
+        transform.position = eventData.position + offset;
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    override public void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.blocksRaycasts = true;
+        InteractionManager.instance.TryInteraction();
+
         transform.SetParent(MixArea.instance.transform);
 
+        base.OnEndDrag(eventData);
 
-        if (InteractionManager.instance.hoveredCard != null)
-        {
-            if (InteractionManager.instance.hoveredCard.GetComponentInParent<MixArea>() == null)
-            {
-                Destroy(gameObject);
-                InteractionManager.instance.selectedCard = null;
-                return;
-            }
-        }
-
-        InteractionManager.instance.TryInteraction();
-        InteractionManager.instance.selectedCard = null;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        OnHover.Invoke(true);
-        if (InteractionManager.instance.selectedCard != null)
-            InteractionManager.instance.hoveredCard = this;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        OnHover.Invoke(false);
-        if (InteractionManager.instance.selectedCard != null)
-            InteractionManager.instance.hoveredCard = null;
     }
 
     public void UpdateElement(Element element, bool unlocked = false)
     {
         this.element = element;
-        OnElementChange.Invoke();
+
+        OnElementChange.Invoke(element.elementName);
 
         if (!unlocked)
             return;
 
-        //TODO Do this with events dummy
-        if (GetComponentInChildren<CardVisual>() != null)
-        {
-            GetComponentInChildren<CardVisual>().newElementIndicator.SetActive(true);
-        }
+        OnUnlock.Invoke(true);
+    }
+
+    public override void OnPointerDown(PointerEventData eventData)
+    {
+        base.OnPointerDown(eventData);
+        if (GetComponentInParent<CardContainer>() == null && eventData.button == PointerEventData.InputButton.Right)
+            Destroy(gameObject);
+    }
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        OnUnlock.Invoke(false);
+
     }
 
     public void CombinationComplete()
     {
         OnCombination.Invoke();
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (GetComponentInParent<CardContainer>() == null && eventData.button == PointerEventData.InputButton.Right)
-        {
-            Destroy(gameObject);
-        }
     }
 }
