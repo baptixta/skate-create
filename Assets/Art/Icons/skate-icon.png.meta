@@ -158,7 +158,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      skate-icon_0: 8345288822618621006
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
