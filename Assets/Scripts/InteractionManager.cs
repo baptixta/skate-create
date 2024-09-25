@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class InteractionManager : MonoBehaviour
     [Header("Card Logic")]
     public Card selectedCard = null;
     public Card hoveredCard = null;
+
+    [HideInInspector] public UnityEvent OnCombination;
 
     private void Awake()
     {
@@ -42,6 +45,9 @@ public class InteractionManager : MonoBehaviour
 
                 if (combination != null)
                 {
+                    print("combination");
+                    OnCombination.Invoke();
+
                     GameManager.instance.TryUnlockCombination(combination);
                     selectedElementCard.UpdateElement(combination);
                     selectedElementCard.CombinationComplete();
@@ -78,6 +84,9 @@ public class InteractionManager : MonoBehaviour
             {
                 ActionCard actionCard = selectedCard.GetComponent<ActionCard>();
                 ElementCard elementCard = hoveredCard.GetComponent<ElementCard>();
+
+                if (elementCard.GetComponentInParent<CardContainer>() != null)
+                    return;
 
                 if (actionCard.actionType == ActionCard.ActionType.divide)
                 {

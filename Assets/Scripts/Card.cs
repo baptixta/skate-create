@@ -27,7 +27,6 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
-        offset = (Vector2)transform.position - Mouse.current.position.value;
         canvasGroup.blocksRaycasts = false;
         InteractionManager.instance.selectedCard = this;
     }
@@ -58,5 +57,6 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+        offset = (Vector2)transform.position - Mouse.current.position.value;
     }
 }
