@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.UI;
@@ -9,25 +9,73 @@ public class VirtualMouseUI : MonoBehaviour
 
     [SerializeField] private RectTransform canvasRectTransform;
     private VirtualMouseInput virtualMouseInput;
-    private void Awake()
+
+    public enum GameDevice
     {
-        virtualMouseInput = GetComponent<VirtualMouseInput>();
-        //InputSystem.onActionChange += OnInputActionChange;
-        InputState.Change(virtualMouseInput.virtualMouse.position, new Vector2(Screen.width / 2, Screen.height / 2));
+        KeyboardMouse,
+        Gamepad
     }
 
-    // private void OnInputActionChange(object arg1, InputActionChange change)
-    // {
-    //     if(change == InputActionChange.ActionPerformed && arg1 is InputAction){
-    //         InputAction inputAction = arg1 as InputAction;
-    //         if(inputAction.activeControl.device.displayName == "VirtualMouse"){
-    //             return;
-    //         }
-    //         if(inputAction.activeControl.device is Gamepad){
-    //             if()
-    //         }
-    //     }
-    // }
+    private GameDevice activeGameDevice;
+
+
+    private void Start()
+    {
+        virtualMouseInput = GetComponent<VirtualMouseInput>();
+        InputSystem.onActionChange += OnInputActionChange;
+        ResetMouseToCenter();
+    }
+
+    private void OnInputActionChange(object arg1, InputActionChange change)
+    {
+        if (change == InputActionChange.ActionPerformed && arg1 is InputAction)
+        {
+            InputAction inputAction = arg1 as InputAction;
+            if (inputAction.activeControl.device.displayName == "VirtualMouse")
+            {
+                return;
+            }
+            if (inputAction.activeControl.device is Gamepad)
+            {
+                if (activeGameDevice != GameDevice.Gamepad)
+                {
+                    ChangeActiveGameDevice(GameDevice.Gamepad);
+                }
+            }
+            else
+            {
+                if (activeGameDevice != GameDevice.KeyboardMouse)
+                {
+                    ChangeActiveGameDevice(GameDevice.KeyboardMouse);
+                }
+            }
+        }
+    }
+
+    private void ChangeActiveGameDevice(GameDevice activeGameDevice)
+    {
+        this.activeGameDevice = activeGameDevice;
+        Cursor.visible = activeGameDevice == GameDevice.KeyboardMouse;
+        //UpdateVisibility();
+    }
+
+    void UpdateVisibility()
+    {
+        if (activeGameDevice == GameDevice.Gamepad)
+        {
+            ResetMouseToCenter();
+            transform.GetComponentInChildren<Image>().enabled = true;
+        }
+        else
+        {
+            transform.GetComponentInChildren<Image>().enabled = false;
+        }
+    }
+
+    private void ResetMouseToCenter()
+    {
+        InputState.Change(virtualMouseInput.virtualMouse.position, new Vector2(Screen.width / 2, Screen.height / 2));
+    }
 
     private void Update()
     {
