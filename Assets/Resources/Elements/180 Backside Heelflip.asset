@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 180 Backside Heelflip
   m_EditorClassIdentifier: 
   elementName: 180 Backside Heelflip
-  description: 
-  category: Trick
+  description: Heelflip
+  category: 180 Backside Double Heelflip
   originCombination: 

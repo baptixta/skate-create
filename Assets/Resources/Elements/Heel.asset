@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Heel
   m_EditorClassIdentifier: 
   elementName: Heel
-  description: 
-  category: Body
+  description: Pop Tail
+  category: Heelflip
   originCombination: 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Skate 180 (Frontside)
   m_EditorClassIdentifier: 
   elementName: Skate 180 (Frontside)
-  description: 
-  category: Skate
+  description: Heelflip
+  category: Shovit Heelflip
   originCombination: 

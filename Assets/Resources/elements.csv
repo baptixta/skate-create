@@ -1,5 +1,6 @@
 Name,Description,Category
 Pop Tail,,Body
+Pop Nose,,Body
 Body 180 (Frontside),,Body
 Body 180 (Backside),,Body
 Skate 180 (Frontside),,Skate
@@ -8,6 +9,10 @@ Ollie,,Trick
 Double Ollie,,Joker
 Triple Ollie,,Joker
 Quadruple Ollie,,Joker
+Confusion,,Joker
+Ninja Kick,,Joker
+Ninja Flip,,Joker
+Ninja Heelflip,,Joker
 180 Backside Ollie,,Trick
 360 Backside Ollie,,Trick
 540 Backside Ollie,,Trick
@@ -52,6 +57,7 @@ Varial Double Flip,,Trick
 360 Double Flip,,Trick
 360 Triple Flip,,Trick
 360 Quadruple Flip,,Trick
+180 Backside Bigspin Flip,,Trick
 540 Flip,,Trick
 540 Double Flip,,Trick
 540 Triple Flip,,Trick
@@ -89,6 +95,7 @@ Lazer Flip,,Trick
 Lazer Double Flip,,Trick
 Lazer Triple Flip,,Trick
 Lazer Quadruple Flip,,Trick
+180 Frontside Bigspin Heelflip,,Trick
 Inward Heelflip,,Trick
 Double Inward Heelflip,,Trick
 Triple Inward Heelflip,,Trick

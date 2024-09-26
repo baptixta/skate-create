@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Triple Heelflip
   m_EditorClassIdentifier: 
   elementName: Triple Heelflip
-  description: 
-  category: Trick
+  description: Heelflip
+  category: Quadruple Heelflip
   originCombination: 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 180 Backside Ollie
   m_EditorClassIdentifier: 
   elementName: 180 Backside Ollie
-  description: 
-  category: Trick
+  description: 180 Backside Ollie
+  category: 360 Backside Ollie
   originCombination: 

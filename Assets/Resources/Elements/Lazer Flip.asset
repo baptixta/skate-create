@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Lazer Flip
   m_EditorClassIdentifier: 
   elementName: Lazer Flip
-  description: 
-  category: Trick
+  description: Heelflip
+  category: Lazer Double Flip
   originCombination: 

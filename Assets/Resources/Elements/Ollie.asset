@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ollie
   m_EditorClassIdentifier: 
   elementName: Ollie
-  description: 
-  category: Trick
+  description: Ollie
+  category: Double Ollie
   originCombination: 

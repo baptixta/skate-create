@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 180 Frontside Flip
   m_EditorClassIdentifier: 
   elementName: 180 Frontside Flip
-  description: 
-  category: Trick
+  description: Flip
+  category: 180 Frontside Double Flip
   originCombination: 

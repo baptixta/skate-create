@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 360 Triple Flip
   m_EditorClassIdentifier: 
   elementName: 360 Triple Flip
-  description: 
-  category: Trick
+  description: Flip
+  category: 360 Quadruple Flip
   originCombination: 

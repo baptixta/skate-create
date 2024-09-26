@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Double Flip
   m_EditorClassIdentifier: 
   elementName: Double Flip
-  description: 
-  category: Trick
+  description: Flip
+  category: Triple Flip
   originCombination: 
