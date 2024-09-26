@@ -57,6 +57,6 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        offset = (Vector2)transform.position - Mouse.current.position.value;
+        offset = (Vector2)transform.position - eventData.position;
     }
 }

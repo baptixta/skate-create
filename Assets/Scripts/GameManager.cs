@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     [Header("Debug Input")]
     public InputActionReference resetAction;
 
+    [Header("Version Settings")]
+    public TextMeshProUGUI versionLabel;
+
     private void Awake()
     {
         instance = this;
@@ -53,6 +56,12 @@ public class GameManager : MonoBehaviour
 
         if (ES3.KeyExists("unlockedElements"))
         {
+            string[] elementNames = ES3.Load<string>("unlockedElements").Split(',');
+            if (elementNames[0] != "Ollie")
+            {
+                LoadInitialElementsFromCSV("initialElements");
+                Save();
+            }
             Load();
         }
         else
@@ -64,6 +73,9 @@ public class GameManager : MonoBehaviour
         CreateCards(unlockedElements);
 
         UpdateDiscoveryLabel();
+
+        if (versionLabel != null)
+            versionLabel.text = Application.version;
 
     }
 
@@ -80,24 +92,43 @@ public class GameManager : MonoBehaviour
 
     private void Load()
     {
-        print("save file exists");
-
-        string[] elementNames = ES3.Load<string>("unlockedElements").Split(',');
-        List<Element> elementsList = new List<Element>();
-
-        foreach (string elementName in elementNames)
+        try
         {
-            string trimmedName = elementName.Trim();
-            Element element = Resources.Load<Element>("Elements/" + trimmedName);
+            print("Attempting to load save file...");
 
-            if (element != null)
-                elementsList.Add(element);
+            // Check if the save file exists and load the string
+            if (ES3.KeyExists("unlockedElements"))
+            {
+                string[] elementNames = ES3.Load<string>("unlockedElements").Split(',');
+
+                List<Element> elementsList = new List<Element>();
+
+                foreach (string elementName in elementNames)
+                {
+                    string trimmedName = elementName.Trim();
+                    Element element = Resources.Load<Element>("Elements/" + trimmedName);
+
+                    if (element != null)
+                        elementsList.Add(element);
+                    else
+                        Debug.LogError($"Element '{trimmedName}' not found in Resources.");
+                }
+
+                unlockedElements = elementsList.ToArray();
+            }
             else
-                Debug.LogError($"Element '{trimmedName}' not found in Resources.");
+            {
+                Debug.LogWarning("Save file not found. Initializing new save file...");
+            }
         }
-
-        unlockedElements = elementsList.ToArray();
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to load save data: {ex.Message}. Creating a new save file...");
+            ES3.DeleteKey("unlockedElements");
+            Start();
+        }
     }
+
 
     public void ChangeFilter(bool category = true)
     {
