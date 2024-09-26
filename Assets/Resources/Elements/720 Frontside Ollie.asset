@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 720 Frontside Ollie
   m_EditorClassIdentifier: 
   elementName: 720 Frontside Ollie
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

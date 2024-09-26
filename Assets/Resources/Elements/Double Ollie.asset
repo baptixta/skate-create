@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Double Ollie
   m_EditorClassIdentifier: 
   elementName: Double Ollie
-  icon: {fileID: 0}
+  description: 
+  category: Joker
   originCombination: 

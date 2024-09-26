@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class ActionCard : Card
 {
 
-    public enum ActionType { delete, clean, divide, inspect }
+    public enum ActionType { delete, clean, divide, inspec, filter }
     public ActionType actionType;
 
     private Transform originParent;
@@ -21,6 +21,11 @@ public class ActionCard : Card
         if (actionType == ActionType.clean)
         {
             MixArea.instance.Clean();
+        }
+
+        if (actionType == ActionType.filter)
+        {
+            GameManager.instance.ChangeFilter(!GameManager.instance.categoryFilter);
         }
     }
     public override void OnBeginDrag(PointerEventData eventData)

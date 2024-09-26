@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Double Hardflip
   m_EditorClassIdentifier: 
   elementName: Double Hardflip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

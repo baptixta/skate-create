@@ -62,7 +62,7 @@ public class CombinationManager : MonoBehaviour
             // Log errors if any element or result is missing
             if (element1 == null || element2 == null || result == null)
             {
-                Debug.LogError($"Error loading elements from CSV: {element1Name}, {element2Name}, or {resultName} is missing.");
+                Debug.LogWarning($"Error loading elements from CSV: {element1Name}, {element2Name}, or {resultName} is missing.");
                 continue;
             }
 

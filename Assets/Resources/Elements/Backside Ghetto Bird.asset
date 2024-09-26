@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Backside Ghetto Bird
   m_EditorClassIdentifier: 
   elementName: Backside Ghetto Bird
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

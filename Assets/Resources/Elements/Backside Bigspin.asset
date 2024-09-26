@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Backside Bigspin
   m_EditorClassIdentifier: 
   elementName: Backside Bigspin
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

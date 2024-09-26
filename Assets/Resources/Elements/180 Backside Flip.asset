@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 180 Backside Flip
   m_EditorClassIdentifier: 
   elementName: 180 Backside Flip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

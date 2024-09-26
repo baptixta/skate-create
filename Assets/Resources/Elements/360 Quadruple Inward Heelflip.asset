@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 360 Quadruple Inward Heelflip
   m_EditorClassIdentifier: 
   elementName: 360 Quadruple Inward Heelflip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

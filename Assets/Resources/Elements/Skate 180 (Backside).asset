@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Skate 180 (Backside)
   m_EditorClassIdentifier: 
   elementName: Skate 180 (Backside)
-  icon: {fileID: 0}
+  description: 
+  category: Skate
   originCombination: 

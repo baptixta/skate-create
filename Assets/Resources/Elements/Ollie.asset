@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Ollie
   m_EditorClassIdentifier: 
   elementName: Ollie
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

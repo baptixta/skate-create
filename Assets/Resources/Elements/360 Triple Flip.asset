@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 360 Triple Flip
   m_EditorClassIdentifier: 
   elementName: 360 Triple Flip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

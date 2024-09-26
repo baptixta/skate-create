@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 900 Varial
   m_EditorClassIdentifier: 
   elementName: 900 Varial
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

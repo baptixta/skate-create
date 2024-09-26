@@ -1,25 +1,26 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+
 public class ElementBatchCreator : EditorWindow
 {
     private TextAsset csvFile;  // CSV file reference
     private string folderPath = "Assets/Resources/Elements/"; // Default folder to save ScriptableObjects
 
-    [MenuItem("Tools/Batch Create Elements and Results")]
+    [MenuItem("Tools/Batch Create Elements")]
     public static void ShowWindow()
     {
-        GetWindow<ElementBatchCreator>("Batch Create Elements and Results");
+        GetWindow<ElementBatchCreator>("Batch Create Elements");
     }
 
     private void OnGUI()
     {
-        GUILayout.Label("Batch Create Element and Result ScriptableObjects", EditorStyles.boldLabel);
+        GUILayout.Label("Batch Create Element ScriptableObjects", EditorStyles.boldLabel);
 
         csvFile = (TextAsset)EditorGUILayout.ObjectField("CSV File", csvFile, typeof(TextAsset), false);
         folderPath = EditorGUILayout.TextField("Save Path", folderPath);
 
-        if (GUILayout.Button("Create Elements and Results"))
+        if (GUILayout.Button("Create Elements"))
         {
             if (csvFile == null)
             {
@@ -55,21 +56,24 @@ public class ElementBatchCreator : EditorWindow
                 continue;
             }
 
-            string element1Name = row[0].Trim();
-            string element2Name = row[1].Trim();
-            string resultName = row[2].Trim();
+            if (row.Length != 3)
+            {
+                Debug.LogError("Invalid row in CSV: " + line);
+                continue;
+            }
 
-            CreateScriptableObject(element1Name);
-            CreateScriptableObject(element2Name);
-            CreateScriptableObject(resultName);
+            string elementName = row[0].Trim();
+            string description = row[1].Trim();
+            string category = row[2].Trim();
+
+            CreateScriptableObject(elementName, description, category);
         }
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
 
-
-    private void CreateScriptableObject(string elementName)
+    private void CreateScriptableObject(string elementName, string description, string category)
     {
         // Check if the ScriptableObject already exists
         Element existingElement = Resources.Load<Element>("Elements/" + elementName);
@@ -82,10 +86,12 @@ public class ElementBatchCreator : EditorWindow
         // Create the ScriptableObject for the element
         Element newElement = CreateInstance<Element>();
         newElement.elementName = elementName;
+        newElement.description = description;
+        newElement.category = category;
 
         // Save it to the specified path
         string assetPath = folderPath + elementName + ".asset";
         AssetDatabase.CreateAsset(newElement, assetPath);
-        Debug.Log("Created Element/Result: " + elementName);
+        Debug.Log("Created Element: " + elementName);
     }
 }

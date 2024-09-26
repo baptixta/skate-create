@@ -4,6 +4,7 @@ using UnityEngine;
 public class Element : ScriptableObject
 {
     public string elementName;
-    public Sprite icon;
+    public string description;
+    public string category;
     public string originCombination = string.Empty;
 }

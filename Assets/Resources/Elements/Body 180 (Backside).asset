@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Body 180 (Backside)
   m_EditorClassIdentifier: 
   elementName: Body 180 (Backside)
-  icon: {fileID: 0}
+  description: 
+  category: Body
   originCombination: 

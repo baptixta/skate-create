@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 540 Flip
   m_EditorClassIdentifier: 
   elementName: 540 Flip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

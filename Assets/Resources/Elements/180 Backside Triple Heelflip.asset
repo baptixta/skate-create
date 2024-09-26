@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 180 Backside Triple Heelflip
   m_EditorClassIdentifier: 
   elementName: 180 Backside Triple Heelflip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Kick
   m_EditorClassIdentifier: 
   elementName: Kick
-  icon: {fileID: 0}
+  description: 
+  category: Body
   originCombination: 

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Lazer Double Flip
   m_EditorClassIdentifier: 
   elementName: Lazer Double Flip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

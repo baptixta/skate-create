@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 360 Pop Shovit
   m_EditorClassIdentifier: 
   elementName: 360 Pop Shovit
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

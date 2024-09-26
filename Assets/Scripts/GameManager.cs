@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +22,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Unlocked")]
     [SerializeField] private Element[] unlockedElements;
+    [SerializeField] private Element[] arrangedElements;
+
+    public bool categoryFilter = false;
+
     [Header("Debug Input")]
     public InputActionReference resetAction;
-
 
     private void Awake()
     {
@@ -46,23 +50,32 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        LoadInitialElementsFromCSV("initialElements");
 
         if (ES3.KeyExists("unlockedElements"))
-            Load();
-        else
-            Save();
-
-        //Create card gameobjects
-        for (int i = 0; i < unlockedElements.Length; i++)
         {
-            ElementCard card = Instantiate(elementCardPrefab, elementContainer).GetComponent<ElementCard>();
-            card.UpdateElement(unlockedElements[i]);
-            card.gameObject.name = card.element.elementName;
+            Load();
         }
+        else
+        {
+            LoadInitialElementsFromCSV("initialElements");
+            Save();
+        }
+
+        CreateCards(unlockedElements);
 
         UpdateDiscoveryLabel();
 
+    }
+
+    void CreateCards(Element[] elementList)
+    {
+        //Create card gameobjects
+        for (int i = 0; i < elementList.Length; i++)
+        {
+            ElementCard card = Instantiate(elementCardPrefab, elementContainer).GetComponent<ElementCard>();
+            card.UpdateElement(elementList[i]);
+            card.gameObject.name = card.element.elementName;
+        }
     }
 
     private void Load()
@@ -74,7 +87,6 @@ public class GameManager : MonoBehaviour
 
         foreach (string elementName in elementNames)
         {
-
             string trimmedName = elementName.Trim();
             Element element = Resources.Load<Element>("Elements/" + trimmedName);
 
@@ -85,6 +97,36 @@ public class GameManager : MonoBehaviour
         }
 
         unlockedElements = elementsList.ToArray();
+    }
+
+    public void ChangeFilter(bool category = true)
+    {
+        categoryFilter = category;
+
+        arrangedElements = new Element[unlockedElements.Length];
+
+        // Sort the elements by their category
+        arrangedElements = unlockedElements
+            .OrderBy(e => e.category)  // Assuming 'category' is a property in Element
+            .ToArray();
+
+        if (!category)
+        {
+            RearrangeElementsInContainer(unlockedElements);
+            return;
+        }
+
+        // Rearrange the elements inside the container without destruction
+        RearrangeElementsInContainer(arrangedElements);
+    }
+
+    private void RearrangeElementsInContainer(Element[] elements)
+    {
+
+        foreach (Transform child in elementContainer)
+            Destroy(child.gameObject);
+
+        CreateCards(elements);
     }
 
     private void Save()
@@ -137,7 +179,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateDiscoveryLabel()
     {
-        unlockedLabel.text = unlockedElements.Length.ToString() + "/" + GetUniqueElementCountFromCSV("combinations").ToString();
+        unlockedLabel.text = unlockedElements.Length.ToString() + "/" + GetUniqueElementCountFromCSV("elements").ToString();
     }
 
     public void LoadInitialElementsFromCSV(string fileName)
@@ -193,6 +235,7 @@ public class GameManager : MonoBehaviour
 
         string line;
         bool firstLine = true;
+
         while ((line = reader.ReadLine()) != null)
         {
             // Skip the first line if it's a header
@@ -202,22 +245,21 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
-            // Split the line by comma to get the element names (Assuming CSV format is: Element1,Element2,Result)
+            // Split the line by comma (Assuming the format is: ElementName,Description,Category)
             string[] parts = line.Split(',');
 
-            if (parts.Length >= 2)
+            if (parts.Length >= 1)
             {
-                string element1 = parts[0].Trim();
-                string element2 = parts[1].Trim();
+                string elementName = parts[0].Trim();
 
-                // Add element1 and element2 to the HashSet
-                uniqueElements.Add(element1);
-                uniqueElements.Add(element2);
+                // Add the element name to the HashSet (only unique values will be kept)
+                uniqueElements.Add(elementName);
             }
         }
 
         // Return the count of unique elements
         return uniqueElements.Count;
     }
+
 
 }

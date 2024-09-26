@@ -2,12 +2,20 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 
 public class CardVisual : MonoBehaviour
 {
     private Card parentCard;
     private TextMeshProUGUI cardLabel;
+    public Image icon;
     public GameObject newElementIndicator;
+
+    [Header("Icons")]
+    public Sprite bodySprite;
+    public Sprite skateSprite;
+    public Sprite trickSprite;
+    public Sprite jokerSprite;
 
     void Awake()
     {
@@ -20,6 +28,33 @@ public class CardVisual : MonoBehaviour
         parentCard.OnElementChange.AddListener(OnElementChange);
         parentCard.OnCombination.AddListener(OnCombination);
         parentCard.OnUnlock.AddListener(OnUnlock);
+    }
+
+    private void Start()
+    {
+        ElementCard elementCard = parentCard.GetComponent<ElementCard>();
+
+        if (elementCard != null)
+            SwitchIcon(elementCard.element);
+    }
+
+    private void SwitchIcon(Element element)
+    {
+        switch (element.category)
+        {
+            case "Body":
+                icon.sprite = bodySprite;
+                return;
+            case "Skate":
+                icon.sprite = skateSprite;
+                return;
+            case "Trick":
+                icon.sprite = trickSprite;
+                return;
+            case "Joker":
+                icon.sprite = jokerSprite;
+                return;
+        }
     }
 
     private void OnUnlock(bool unlocked)
@@ -47,6 +82,10 @@ public class CardVisual : MonoBehaviour
     private void OnElementChange(string elementName)
     {
         cardLabel.text = elementName;
+
+        ElementCard elementCard = parentCard.GetComponent<ElementCard>();
+        if (elementCard != null)
+            SwitchIcon(elementCard.element);
     }
 
     private void OnCombination()

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Frontside Triple Heelflip
   m_EditorClassIdentifier: 
   elementName: Frontside Triple Heelflip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 

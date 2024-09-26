@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Triple Hardflip
   m_EditorClassIdentifier: 
   elementName: Triple Hardflip
-  icon: {fileID: 0}
+  description: 
+  category: Trick
   originCombination: 
