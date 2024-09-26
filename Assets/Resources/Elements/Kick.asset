@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Kick
   m_EditorClassIdentifier: 
   elementName: Kick
-  description: Heel
-  category: Confusion
+  description: 
+  category: Body
   originCombination: 

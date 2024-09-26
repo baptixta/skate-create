@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Frontside Heelflip
   m_EditorClassIdentifier: 
   elementName: Frontside Heelflip
-  description: Heelflip
-  category: Frontside Double Heelflip
+  description: 
+  category: Trick
   originCombination: 

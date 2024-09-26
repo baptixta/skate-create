@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Varial Flip
   m_EditorClassIdentifier: 
   elementName: Varial Flip
-  description: Flip
-  category: Varial Double Flip
+  description: 
+  category: Trick
   originCombination: 

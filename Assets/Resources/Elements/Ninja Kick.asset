@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ninja Kick
   m_EditorClassIdentifier: 
   elementName: Ninja Kick
-  description: Flip
-  category: Ninja Flip
+  description: 
+  category: Joker
   originCombination: 

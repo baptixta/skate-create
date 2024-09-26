@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Hardflip
   m_EditorClassIdentifier: 
   elementName: Hardflip
-  description: Flip
-  category: Double Hardflip
+  description: 
+  category: Trick
   originCombination: 

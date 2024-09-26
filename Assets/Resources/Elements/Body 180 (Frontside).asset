@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Body 180 (Frontside)
   m_EditorClassIdentifier: 
   elementName: Body 180 (Frontside)
-  description: Ollie
-  category: 180 Frontside Ollie
+  description: 
+  category: Body
   originCombination: 

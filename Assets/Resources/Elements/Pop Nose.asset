@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pop Nose
   m_EditorClassIdentifier: 
   elementName: Pop Nose
-  description: Ollie
-  category: Nollie
+  description: 
+  category: Body
   originCombination: 

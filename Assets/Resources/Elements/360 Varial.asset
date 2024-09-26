@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 360 Varial
   m_EditorClassIdentifier: 
   elementName: 360 Varial
-  description: Varial
-  category: 540 Varial
+  description: 
+  category: Trick
   originCombination: 
