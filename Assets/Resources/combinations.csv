@@ -82,15 +82,19 @@ Varial Flip,Varial,360 Flip
 360 Triple Flip,Flip,360 Quadruple Flip
 360 Flip,Body 180 (Backside),180 Backside Bigspin Flip
 360 Flip,Skate 180 (Backside),540 Flip
+360 Flip,Varial,540 Flip
 540 Flip,Flip,540 Double Flip
 540 Double Flip,Flip,540 Triple Flip
 540 Triple Flip,Flip,540 Quadruple Flip
 540 Flip,Skate 180 (Backside),720 Flip
 360 Flip,360 Flip,720 Flip
+540 Flip,Varial,720 Flip
 720 Flip,Flip,720 Double Flip
 720 Double Flip,Flip,720 Triple Flip
 720 Triple Flip,Flip,720 Quadruple Flip
 720 Flip,Skate 180 (Backside),900 Flip
+540 Flip,360 Flip,900 Flip
+720 Flip,Varial,900 Flip
 900 Flip,Flip,900 Double Flip
 900 Double Flip,Flip,900 Triple Flip
 900 Triple Flip,Flip,900 Quadruple Flip
@@ -130,6 +134,9 @@ Pop Shovit,Heelflip,Shovit Heelflip
 Skate 180 (Frontside),Heelflip,Shovit Heelflip
 Shovit Heelflip,Shovit Heelflip,Shovit Double Heelflip
 Shovit Heelflip,Heelflip,Shovit Double Heelflip
+Shovit Double Heelflip,Heelflip,Shovit Triple Heelflip
+Shovit Triple Heelflip,Heelflip,Shovit Quadruple Heelflip
+Shovit Double Heelflip,Shovit Double Heelflip,Shovit Quadruple Heelflip
 Shovit Heelflip,Pop Shovit,Lazer Flip
 Heelflip,360 Pop Shovit,Lazer Flip
 Lazer Flip,Heelflip,Lazer Double Flip
