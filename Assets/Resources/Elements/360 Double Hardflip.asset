@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 360 Double Hardflip
   description: 
   category: Trick
+  overlays: flip;shovit
+  multiplier: 2
   originCombination: 

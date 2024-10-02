@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Heelflip
   description: 
   category: Trick
+  overlays: flip
+  multiplier: 
   originCombination: 

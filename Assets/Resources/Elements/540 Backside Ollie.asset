@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 540 Backside Ollie
   description: 
   category: Trick
+  overlays: backside
+  multiplier: 
   originCombination: 

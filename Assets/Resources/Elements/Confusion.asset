@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Confusion
   description: 
   category: Joker
+  overlays: 
+  multiplier: 
   originCombination: 

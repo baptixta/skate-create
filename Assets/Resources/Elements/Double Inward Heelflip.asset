@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Double Inward Heelflip
   description: 
   category: Trick
+  overlays: flip;varial
+  multiplier: 2
   originCombination: 

@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Double Ollie
   description: 
   category: Joker
+  overlays: 
+  multiplier: 2
   originCombination: 

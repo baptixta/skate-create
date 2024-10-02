@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class CardVisual : MonoBehaviour
 {
     private Card parentCard;
-    private TextMeshProUGUI cardLabel;
     public Image icon;
     public GameObject newElementIndicator;
 
@@ -16,11 +15,14 @@ public class CardVisual : MonoBehaviour
     public Sprite skateSprite;
     public Sprite trickSprite;
     public Sprite jokerSprite;
+    [Header("Text")]
+    [SerializeField] private TextMeshProUGUI cardLabel;
+    [SerializeField] private TextMeshProUGUI multiplierLabel;
+
 
     void Awake()
     {
         parentCard = GetComponentInParent<Card>();
-        cardLabel = GetComponentInChildren<TextMeshProUGUI>();
 
         //Event Listening
         parentCard.OnHover.AddListener(OnHover);
@@ -35,11 +37,39 @@ public class CardVisual : MonoBehaviour
         ElementCard elementCard = parentCard.GetComponent<ElementCard>();
 
         if (elementCard != null)
+        {
             SwitchIcon(elementCard.element);
+        }
     }
+
+    private void ActivateOverlays(Element element)
+    {
+        string[] overlays = element.overlays.Split(';');
+
+        foreach (string overlay in overlays)
+        {
+            print(overlay);
+            if (icon.transform.Find(overlay) != null)
+            {
+                icon.transform.Find(overlay).GetComponent<Image>().enabled = true;
+            }
+        }
+    }
+
+    private void SetMultiplierLabel(Element element)
+    {
+        string baseText = "<mark=#FF9090 padding=“20, 20, 0, 0”>";
+        baseText += element.multiplier;
+        if (element.multiplier != string.Empty)
+            baseText += 'X';
+        multiplierLabel.text = baseText;
+    }
+
 
     private void SwitchIcon(Element element)
     {
+        ActivateOverlays(element);
+        SetMultiplierLabel(element);
         switch (element.category)
         {
             case "Body":
@@ -55,6 +85,7 @@ public class CardVisual : MonoBehaviour
                 icon.sprite = jokerSprite;
                 return;
         }
+
     }
 
     private void OnUnlock(bool unlocked)

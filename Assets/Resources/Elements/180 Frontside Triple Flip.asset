@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 180 Frontside Triple Flip
   description: 
   category: Trick
+  overlays: flip;frontside
+  multiplier: 3
   originCombination: 

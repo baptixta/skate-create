@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Frontside Bigpin
   description: 
   category: Trick
+  overlays: shovit
+  multiplier: 
   originCombination: 

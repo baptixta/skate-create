@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Triple Ollie
   description: 
   category: Joker
+  overlays: 
+  multiplier: 3
   originCombination: 

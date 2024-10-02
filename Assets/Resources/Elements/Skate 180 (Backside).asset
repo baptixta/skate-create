@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Skate 180 (Backside)
   description: 
   category: Skate
+  overlays: backside
+  multiplier: 
   originCombination: 

@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 180 Frontside Quadruple Flip
   description: 
   category: Trick
+  overlays: flip;frontside
+  multiplier: 4
   originCombination: 

@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 540 Varial
   description: 
   category: Trick
+  overlays: varial
+  multiplier: 
   originCombination: 

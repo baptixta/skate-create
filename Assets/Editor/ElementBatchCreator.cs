@@ -6,6 +6,7 @@ public class ElementBatchCreator : EditorWindow
 {
     private TextAsset csvFile;  // CSV file reference
     private string folderPath = "Assets/Resources/Elements/"; // Default folder to save ScriptableObjects
+    private bool deletePreviousObjects = false; // Toggle to delete previous ScriptableObjects
 
     [MenuItem("Tools/Batch Create Elements")]
     public static void ShowWindow()
@@ -19,6 +20,9 @@ public class ElementBatchCreator : EditorWindow
 
         csvFile = (TextAsset)EditorGUILayout.ObjectField("CSV File", csvFile, typeof(TextAsset), false);
         folderPath = EditorGUILayout.TextField("Save Path", folderPath);
+
+        // Toggle for deleting previous objects
+        deletePreviousObjects = EditorGUILayout.Toggle("Delete Previous Objects", deletePreviousObjects);
 
         if (GUILayout.Button("Create Elements"))
         {
@@ -40,6 +44,12 @@ public class ElementBatchCreator : EditorWindow
             Directory.CreateDirectory(folderPath);
         }
 
+        // Delete existing ScriptableObjects if the toggle is enabled
+        if (deletePreviousObjects)
+        {
+            DeleteAllScriptableObjectsInFolder();
+        }
+
         // Read the CSV file line by line
         StringReader reader = new StringReader(csvFile.text);
         bool firstLine = true;
@@ -56,7 +66,8 @@ public class ElementBatchCreator : EditorWindow
                 continue;
             }
 
-            if (row.Length != 3)
+            // Ensure the row contains 5 elements (elementName, description, category, overlays, multiplier)
+            if (row.Length != 5)
             {
                 Debug.LogError("Invalid row in CSV: " + line);
                 continue;
@@ -65,15 +76,17 @@ public class ElementBatchCreator : EditorWindow
             string elementName = row[0].Trim();
             string description = row[1].Trim();
             string category = row[2].Trim();
+            string overlays = row[3];
+            string multiplier = row[4].Trim();
 
-            CreateScriptableObject(elementName, description, category);
+            CreateScriptableObject(elementName, description, category, overlays, multiplier);
         }
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
 
-    private void CreateScriptableObject(string elementName, string description, string category)
+    private void CreateScriptableObject(string elementName, string description, string category, string overlays, string multiplier)
     {
         // Check if the ScriptableObject already exists
         Element existingElement = Resources.Load<Element>("Elements/" + elementName);
@@ -83,15 +96,33 @@ public class ElementBatchCreator : EditorWindow
             return;
         }
 
-        // Create the ScriptableObject for the element
-        Element newElement = CreateInstance<Element>();
+        // Create a new Element ScriptableObject
+        Element newElement = ScriptableObject.CreateInstance<Element>();
         newElement.elementName = elementName;
         newElement.description = description;
         newElement.category = category;
+        newElement.overlays = overlays;
+        newElement.multiplier = multiplier;
 
-        // Save it to the specified path
-        string assetPath = folderPath + elementName + ".asset";
+        // Save the ScriptableObject as an asset
+        string assetPath = Path.Combine(folderPath, elementName + ".asset");
         AssetDatabase.CreateAsset(newElement, assetPath);
-        Debug.Log("Created Element: " + elementName);
+    }
+
+    private void DeleteAllScriptableObjectsInFolder()
+    {
+        // Get all assets in the folder
+        string[] assetPaths = AssetDatabase.FindAssets("t:Element", new[] { folderPath });
+
+        foreach (string assetPath in assetPaths)
+        {
+            string fullPath = AssetDatabase.GUIDToAssetPath(assetPath);
+            AssetDatabase.DeleteAsset(fullPath);
+        }
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+
+        Debug.Log("Deleted all previous scriptable objects in folder: " + folderPath);
     }
 }

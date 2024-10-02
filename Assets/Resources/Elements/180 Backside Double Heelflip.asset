@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 180 Backside Double Heelflip
   description: 
   category: Trick
+  overlays: flip;backside
+  multiplier: 2
   originCombination: 

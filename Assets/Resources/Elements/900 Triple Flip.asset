@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 900 Triple Flip
   description: 
   category: Trick
+  overlays: flip;varial
+  multiplier: 3
   originCombination: 

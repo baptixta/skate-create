@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Backside Gazelle Spin
   description: 
   category: Trick
+  overlays: varial;backside
+  multiplier: 
   originCombination: 

@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Pop Nose
   description: 
   category: Body
+  overlays: 
+  multiplier: 
   originCombination: 

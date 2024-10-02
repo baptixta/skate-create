@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Frontside Triple Heelflip
   description: 
   category: Trick
+  overlays: flip;frontside
+  multiplier: 3
   originCombination: 

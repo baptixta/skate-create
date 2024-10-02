@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -56,7 +55,7 @@ public class ActionCard : Card
             return;
 
         transform.SetParent(originParent);
-        transform.DOLocalMove(Vector2.zero, .2f).SetEase(Ease.OutBack);
+        transform.localPosition = Vector2.zero;
 
     }
 }

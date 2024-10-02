@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Flip
   description: 
   category: Trick
+  overlays: flip
+  multiplier: 
   originCombination: 

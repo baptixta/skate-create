@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 720 Pop Shovit
   description: 
   category: Trick
+  overlays: shovit
+  multiplier: 
   originCombination: 

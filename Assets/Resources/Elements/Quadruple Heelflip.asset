@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8699d5c604a024c54878266db45a047d, type: 3}
-  m_Name: Backside Bigspin
+  m_Name: Quadruple Heelflip
   m_EditorClassIdentifier: 
-  elementName: Backside Bigspin
+  elementName: Quadruple Heelflip
   description: 
   category: Trick
-  overlays: varial;backside
-  multiplier: 
+  overlays: flip
+  multiplier: 4
   originCombination: 

@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Ninja Heelflip
   description: 
   category: Joker
+  overlays: flip
+  multiplier: 
   originCombination: 

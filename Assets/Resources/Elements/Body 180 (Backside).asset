@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Body 180 (Backside)
   description: 
   category: Body
+  overlays: backside
+  multiplier: 
   originCombination: 

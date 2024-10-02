@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 180 Frontside Ollie
   description: 
   category: Trick
+  overlays: frontside
+  multiplier: 
   originCombination: 

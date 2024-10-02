@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 360 Varial
   description: 
   category: Trick
+  overlays: varial
+  multiplier: 
   originCombination: 

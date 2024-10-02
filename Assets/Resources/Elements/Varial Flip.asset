@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Varial Flip
   description: 
   category: Trick
+  overlays: flip;varial
+  multiplier: 
   originCombination: 

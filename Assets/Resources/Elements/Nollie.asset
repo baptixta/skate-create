@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Nollie
   description: 
   category: Trick
+  overlays: 
+  multiplier: 
   originCombination: 

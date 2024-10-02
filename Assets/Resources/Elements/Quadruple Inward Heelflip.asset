@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Quadruple Inward Heelflip
   description: 
   category: Trick
+  overlays: flip;varial
+  multiplier: 4
   originCombination: 

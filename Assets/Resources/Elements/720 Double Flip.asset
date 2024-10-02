@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: 720 Double Flip
   description: 
   category: Trick
+  overlays: flip;varial
+  multiplier: 2
   originCombination: 

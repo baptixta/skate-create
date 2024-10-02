@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Ninja Kick
   description: 
   category: Joker
+  overlays: 
+  multiplier: 
   originCombination: 

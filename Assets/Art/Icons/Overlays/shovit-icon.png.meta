@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 994fd8d7883bc5d4c84ce51fe6e21662
+guid: 74973430d8976ff4fa66b415cdf56ea6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5669268991490366154
-    second: frontside-icon_0
+      213: -1888085122596700878
+    second: shovit-icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -126,12 +126,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: frontside-icon_0
+      name: shovit-icon_0
       rect:
         serializedVersion: 2
-        x: 58
-        y: 139
-        width: 140
+        x: 44
+        y: 75
+        width: 27
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 635641aa3e5b251b0800000000000000
-      internalID: -5669268991490366154
+      spriteID: 23d7ce1a59c2cc5e0800000000000000
+      internalID: -1888085122596700878
       vertices: []
       indices: 
       edges: []
@@ -151,14 +151,15 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      shovit-icon_0: -1888085122596700878
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

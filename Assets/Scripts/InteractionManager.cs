@@ -102,7 +102,7 @@ public class InteractionManager : MonoBehaviour
 
     public void SplitElementCard(string combination)
     {
-        string[] elementNames = combination.Split(',');
+        string[] elementNames = combination.Split(';');
         List<Element> elementsList = new List<Element>();
 
         foreach (string elementName in elementNames)
@@ -128,15 +128,31 @@ public class InteractionManager : MonoBehaviour
 
     void NegativeFeedback(Transform target)
     {
+        // Generate a random direction
         Vector3 randomDirection = new Vector3(Random.Range(-200, 200), Random.Range(-200, 200), 0);
+
+        // Convert the hovered card position to local space relative to MixArea
         Vector3 localPos = MixArea.instance.rectTransform.InverseTransformPoint(hoveredCard.transform.position);
+
+        // Calculate target local position
         Vector3 targetLocalPos = localPos + randomDirection;
+
+        // Get the size of the hovered card
         RectTransform hoveredCardRect = hoveredCard.GetComponent<RectTransform>();
         Vector2 cardSize = hoveredCardRect.rect.size;
+
+        // Get the Rect of the MixArea
         Rect mixRect = MixArea.instance.rectTransform.rect;
+
+        // Clamp the X and Y positions based on the MixArea size and the card size
         float clampedX = Mathf.Clamp(targetLocalPos.x, mixRect.xMin + cardSize.x / 2, mixRect.xMax - cardSize.x / 2);
         float clampedY = Mathf.Clamp(targetLocalPos.y, mixRect.yMin + cardSize.y / 2, mixRect.yMax - cardSize.y / 2);
+
+        // Convert the clamped local position back to world space
         Vector3 clampedWorldPos = MixArea.instance.rectTransform.TransformPoint(new Vector3(clampedX, clampedY, 0));
-        target.DOMove(clampedWorldPos, .4f);
+
+        // Move the target card to the clamped position with a smooth transition
+        target.DOMove(clampedWorldPos, 0.4f);
     }
+
 }

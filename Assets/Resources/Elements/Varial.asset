@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Varial
   description: 
   category: Trick
+  overlays: varial
+  multiplier: 
   originCombination: 

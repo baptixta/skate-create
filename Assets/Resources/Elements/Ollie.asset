@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Ollie
   description: 
   category: Trick
+  overlays: 
+  multiplier: 
   originCombination: 

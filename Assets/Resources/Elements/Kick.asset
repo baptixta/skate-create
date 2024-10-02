@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Kick
   description: 
   category: Body
+  overlays: 
+  multiplier: 
   originCombination: 

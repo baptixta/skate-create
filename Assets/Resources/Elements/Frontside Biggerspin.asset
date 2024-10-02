@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Frontside Biggerspin
   description: 
   category: Trick
+  overlays: shovit;frontside
+  multiplier: 
   originCombination: 

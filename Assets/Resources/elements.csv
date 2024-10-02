@@ -1,110 +1,112 @@
-Name,Description,Category
-Pop Tail,,Body
-Pop Nose,,Body
-Body 180 (Frontside),,Body
-Body 180 (Backside),,Body
-Skate 180 (Frontside),,Skate
-Skate 180 (Backside),,Skate
-Ollie,,Trick
-Double Ollie,,Joker
-Triple Ollie,,Joker
-Quadruple Ollie,,Joker
-Confusion,,Joker
-Ninja Kick,,Joker
-Ninja Flip,,Joker
-Ninja Heelflip,,Joker
-180 Backside Ollie,,Trick
-360 Backside Ollie,,Trick
-540 Backside Ollie,,Trick
-720 Backside Ollie,,Trick
-180 Frontside Ollie,,Trick
-360 Frontside Ollie,,Trick
-540 Frontside Ollie,,Trick
-720 Frontside Ollie,,Trick
-Varial,,Trick
-360 Varial,,Trick
-540 Varial,,Trick
-720 Varial,,Trick
-900 Varial,,Trick
-Backside Bigspin,,Trick
-Backside Biggerspin,,Trick
-Backside Gazelle Spin,,Trick
-Pop Shovit,,Trick
-360 Pop Shovit,,Trick
-540 Pop Shovit,,Trick
-720 Pop Shovit,,Trick
-900 Pop Shovit,,Trick
-Frontside Bigpin,,Trick
-Frontside Biggerspin,,Trick
-Frontside Gazelle Spin,,Trick
-Kick,,Body
-Heel,,Body
-Flip,,Trick
-Double Flip,,Trick
-Triple Flip,,Trick
-Quadruple Flip,,Trick
-180 Backside Flip,,Trick
-180 Backside Double Flip,,Trick
-180 Backside Triple Flip,,Trick
-180 Backside Quadruple Flip,,Trick
-180 Frontside Flip,,Trick
-180 Frontside Double Flip,,Trick
-180 Frontside Triple Flip,,Trick
-180 Frontside Quadruple Flip,,Trick
-Varial Flip,,Trick
-Varial Double Flip,,Trick
-360 Flip,,Trick
-360 Double Flip,,Trick
-360 Triple Flip,,Trick
-360 Quadruple Flip,,Trick
-180 Backside Bigspin Flip,,Trick
-540 Flip,,Trick
-540 Double Flip,,Trick
-540 Triple Flip,,Trick
-540 Quadruple Flip,,Trick
-720 Flip,,Trick
-720 Double Flip,,Trick
-720 Triple Flip,,Trick
-720 Quadruple Flip,,Trick
-900 Flip,,Trick
-900 Double Flip,,Trick
-900 Triple Flip,,Trick
-900 Quadruple Flip,,Trick
-Hardflip,,Trick
-Double Hardflip,,Trick
-Triple Hardflip,,Trick
-Quadruple Hardflip,,Trick
-Backside Ghetto Bird,,Trick
-Frontside Ghetto Bird,,Trick
-360 Hardflip,,Trick
-360 Double Hardflip,,Trick
-360 Quadruple Hardflip,,Trick
-Heelflip,,Trick
-Double Heelflip,,Trick
-Triple Heelflip,,Trick
-180 Backside Heelflip,,Trick
-180 Backside Double Heelflip,,Trick
-180 Backside Triple Heelflip,,Trick
-180 Backside Quadruple Heelflip,,Trick
-Frontside Heelflip,,Trick
-Frontside Double Heelflip,,Trick
-Frontside Triple Heelflip,,Trick
-Frontside Quadruple Heelflip,,Trick
-Shovit Heelflip,,Trick
-Shovit Double Heelflip,,Trick
-Shovit Triple Heelflip,,Trick
-Shovit Quadruple Heelflip,,Trick
-Lazer Flip,,Trick
-Lazer Double Flip,,Trick
-Lazer Triple Flip,,Trick
-Lazer Quadruple Flip,,Trick
-180 Frontside Bigspin Heelflip,,Trick
-Inward Heelflip,,Trick
-Double Inward Heelflip,,Trick
-Triple Inward Heelflip,,Trick
-Quadruple Inward Heelflip,,Trick
-360 Inward Heelflip,,Trick
-360 Double Inward Heelflip,,Trick
-360 Triple Inward Heelflip,,Trick
-360 Quadruple Inward Heelflip,,Trick
-Nollie,,Trick
+Name,Description,Category,Overlay Icons,Multiplier Icons
+Pop Tail,,Body,,
+Pop Nose,,Body,,
+Body 180 (Frontside),,Body,frontside,
+Body 180 (Backside),,Body,backside,
+Skate 180 (Frontside),,Skate,frontside,
+Skate 180 (Backside),,Skate,backside,
+Ollie,,Trick,,
+Double Ollie,,Joker,,2
+Triple Ollie,,Joker,,3
+Quadruple Ollie,,Joker,,4
+Confusion,,Joker,,
+Ninja Kick,,Joker,,
+Ninja Flip,,Joker,flip,
+Ninja Heelflip,,Joker,flip,
+180 Backside Ollie,,Trick,backside,
+360 Backside Ollie,,Trick,backside,
+540 Backside Ollie,,Trick,backside,
+720 Backside Ollie,,Trick,backside,
+180 Frontside Ollie,,Trick,frontside,
+360 Frontside Ollie,,Trick,frontside,
+540 Frontside Ollie,,Trick,frontside,
+720 Frontside Ollie,,Trick,frontside,
+Varial,,Trick,varial,
+360 Varial,,Trick,varial,
+540 Varial,,Trick,varial,
+720 Varial,,Trick,varial,
+900 Varial,,Trick,varial,
+Backside Bigspin,,Trick,varial;backside,
+Backside Biggerspin,,Trick,varial;backside,
+Backside Gazelle Spin,,Trick,varial;backside,
+Pop Shovit,,Trick,shovit,
+360 Pop Shovit,,Trick,shovit,
+540 Pop Shovit,,Trick,shovit,
+720 Pop Shovit,,Trick,shovit,
+900 Pop Shovit,,Trick,shovit,
+Frontside Bigpin,,Trick,shovit,
+Frontside Biggerspin,,Trick,shovit;frontside,
+Frontside Gazelle Spin,,Trick,shovit;frontside,
+Kick,,Body,,
+Heel,,Body,,
+Flip,,Trick,flip,
+Double Flip,,Trick,flip,2
+Triple Flip,,Trick,flip,3
+Quadruple Flip,,Trick,flip,4
+180 Backside Flip,,Trick,flip;backside,
+180 Backside Double Flip,,Trick,flip;backside,2
+180 Backside Triple Flip,,Trick,flip;backside,3
+180 Backside Quadruple Flip,,Trick,flip;backside,4
+180 Frontside Flip,,Trick,flip;frontside,
+180 Frontside Double Flip,,Trick,flip;frontside,2
+180 Frontside Triple Flip,,Trick,flip;frontside,3
+180 Frontside Quadruple Flip,,Trick,flip;frontside,4
+Varial Flip,,Trick,flip;varial,
+Varial Double Flip,,Trick,flip;varial,2
+360 Flip,,Trick,flip;varial,
+360 Double Flip,,Trick,flip;varial,2
+360 Triple Flip,,Trick,flip;varial,3
+360 Quadruple Flip,,Trick,flip;varial,4
+180 Backside Bigspin Flip,,Trick,flip;varial;backside,
+540 Flip,,Trick,flip;varial,2
+540 Double Flip,,Trick,flip;varial,
+540 Triple Flip,,Trick,flip;varial,3
+540 Quadruple Flip,,Trick,flip;varial,4
+720 Flip,,Trick,flip;varial,
+720 Double Flip,,Trick,flip;varial,2
+720 Triple Flip,,Trick,flip;varial,3
+720 Quadruple Flip,,Trick,flip;varial,4
+900 Flip,,Trick,flip;varial,
+900 Double Flip,,Trick,flip;varial,2
+900 Triple Flip,,Trick,flip;varial,3
+900 Quadruple Flip,,Trick,flip;varial,4
+Hardflip,,Trick,flip;shovit,
+Double Hardflip,,Trick,flip;shovit,2
+Triple Hardflip,,Trick,flip;shovit,3
+Quadruple Hardflip,,Trick,flip;shovit,4
+Backside Ghetto Bird,,Trick,flip;shovit;backside,
+Frontside Ghetto Bird,,Trick,flip;shovit;frontside,
+360 Hardflip,,Trick,flip;shovit,
+360 Double Hardflip,,Trick,flip;shovit,2
+360 Triple Hardflip,,Trick,flip;shovit,3
+360 Quadruple Hardflip,,Trick,flip;shovit,4
+Heelflip,,Trick,flip,
+Double Heelflip,,Trick,flip,2
+Triple Heelflip,,Trick,flip,3
+Quadruple Heelflip,,Trick,flip,4
+180 Backside Heelflip,,Trick,flip;backside,
+180 Backside Double Heelflip,,Trick,flip;backside,2
+180 Backside Triple Heelflip,,Trick,flip;backside,3
+180 Backside Quadruple Heelflip,,Trick,flip;backside,4
+Frontside Heelflip,,Trick,flip;frontside,
+Frontside Double Heelflip,,Trick,flip;frontside,2
+Frontside Triple Heelflip,,Trick,flip;frontside,3
+Frontside Quadruple Heelflip,,Trick,flip;frontside,4
+Shovit Heelflip,,Trick,flip;shovit,
+Shovit Double Heelflip,,Trick,flip;shovit,2
+Shovit Triple Heelflip,,Trick,flip;shovit,3
+Shovit Quadruple Heelflip,,Trick,flip;shovit,4
+Lazer Flip,,Trick,flip;shovit,
+Lazer Double Flip,,Trick,flip;shovit,2
+Lazer Triple Flip,,Trick,flip;shovit,3
+Lazer Quadruple Flip,,Trick,flip;shovit,4
+180 Frontside Bigspin Heelflip,,Trick,flip;shovit;frontside,
+Inward Heelflip,,Trick,flip;varial,
+Double Inward Heelflip,,Trick,flip;varial,2
+Triple Inward Heelflip,,Trick,flip;varial,3
+Quadruple Inward Heelflip,,Trick,flip;varial,4
+360 Inward Heelflip,,Trick,flip;varial,
+360 Double Inward Heelflip,,Trick,flip;varial,2
+360 Triple Inward Heelflip,,Trick,flip;varial,3
+360 Quadruple Inward Heelflip,,Trick,flip;varial,4
+Nollie,,Trick,,

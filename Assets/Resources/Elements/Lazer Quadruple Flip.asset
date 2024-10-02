@@ -15,4 +15,6 @@ MonoBehaviour:
   elementName: Lazer Quadruple Flip
   description: 
   category: Trick
+  overlays: flip;shovit
+  multiplier: 4
   originCombination: 

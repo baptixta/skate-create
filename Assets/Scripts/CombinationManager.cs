@@ -85,7 +85,7 @@ public class CombinationManager : MonoBehaviour
         combinations[(element2, element1)] = result;
 
         // Set the originCombination field in the result element
-        result.originCombination = $"{element1.elementName},{element2.elementName}";
+        result.originCombination = $"{element1.elementName};{element2.elementName}";
 
         // Debug logs for tracking which combinations were added
         Debug.Log($"Combination added: {element1.elementName} + {element2.elementName} = {result.elementName}");
