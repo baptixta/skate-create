@@ -8,33 +8,41 @@ public class InteractionManager : MonoBehaviour
     public static InteractionManager instance { get; private set; }
 
     [Header("Card Logic")]
-    public Card selectedCard = null;
+    public Card topCard = null;
+    public Card bottomCard = null;
     public Card hoveredCard = null;
 
     [HideInInspector] public UnityEvent OnCombination;
+    [HideInInspector] public UnityEvent<Card> OnHover;
 
     private void Awake()
     {
         instance = this;
     }
 
+    public void SetHoveredCard(Card card)
+    {
+        OnHover.Invoke(card);
+        hoveredCard = card;
+    }
+
     //Try Interaction between two cards
     internal void TryInteraction()
     {
-        if (selectedCard != null && hoveredCard != null)
+        if (topCard != null && bottomCard != null)
         {
 
             //If both cards are elements
-            if (selectedCard.GetComponent<ElementCard>() != null && hoveredCard.GetComponent<ElementCard>() != null)
+            if (topCard.GetComponent<ElementCard>() != null && bottomCard.GetComponent<ElementCard>() != null)
             {
-                if (hoveredCard.GetComponentInParent<CardContainer>() != null)
+                if (bottomCard.GetComponentInParent<CardContainer>() != null)
                 {
-                    Destroy(selectedCard.gameObject);
+                    Destroy(topCard.gameObject);
                     return;
                 }
 
-                ElementCard selectedElementCard = selectedCard.GetComponent<ElementCard>();
-                ElementCard hoveredElementCard = hoveredCard.GetComponent<ElementCard>();
+                ElementCard selectedElementCard = topCard.GetComponent<ElementCard>();
+                ElementCard hoveredElementCard = bottomCard.GetComponent<ElementCard>();
                 if (selectedElementCard.element == null || hoveredElementCard.element == null)
                 {
                     Debug.LogError("One of the elements is null!");
@@ -51,23 +59,23 @@ public class InteractionManager : MonoBehaviour
                     GameManager.instance.TryUnlockCombination(combination);
                     selectedElementCard.UpdateElement(combination);
                     selectedElementCard.CombinationComplete();
-                    Destroy(hoveredCard.gameObject);
+                    Destroy(bottomCard.gameObject);
                 }
                 else
                 {
                     print("no combination");
-                    NegativeFeedback(hoveredCard.transform);
+                    NegativeFeedback(bottomCard.transform);
                 }
             }
 
             //If we are dragging an Element to the delete card
-            if (hoveredCard.GetComponent<ActionCard>() && selectedCard.GetComponent<ElementCard>())
+            if (bottomCard.GetComponent<ActionCard>() && topCard.GetComponent<ElementCard>())
             {
-                ActionCard actionCard = hoveredCard.GetComponent<ActionCard>();
+                ActionCard actionCard = bottomCard.GetComponent<ActionCard>();
 
                 if (actionCard.actionType == ActionCard.ActionType.delete)
                 {
-                    Destroy(selectedCard.gameObject);
+                    Destroy(topCard.gameObject);
                 }
 
                 if (actionCard.actionType == ActionCard.ActionType.divide)
@@ -80,10 +88,10 @@ public class InteractionManager : MonoBehaviour
             }
 
             //If we are dragging an action card to an element card
-            if (selectedCard.GetComponent<ActionCard>() && hoveredCard.GetComponent<ElementCard>())
+            if (topCard.GetComponent<ActionCard>() && bottomCard.GetComponent<ElementCard>())
             {
-                ActionCard actionCard = selectedCard.GetComponent<ActionCard>();
-                ElementCard elementCard = hoveredCard.GetComponent<ElementCard>();
+                ActionCard actionCard = topCard.GetComponent<ActionCard>();
+                ElementCard elementCard = bottomCard.GetComponent<ElementCard>();
 
                 if (elementCard.GetComponentInParent<CardContainer>() != null)
                     return;
@@ -93,7 +101,7 @@ public class InteractionManager : MonoBehaviour
                     if (elementCard.element.originCombination != string.Empty)
                     {
                         SplitElementCard(elementCard.element.originCombination);
-                        Destroy(hoveredCard.gameObject);
+                        Destroy(bottomCard.gameObject);
                     }
                 }
             }
@@ -119,7 +127,7 @@ public class InteractionManager : MonoBehaviour
         foreach (Element element in elementsList)
         {
             //TODO do this on GameManager
-            GameObject clone = Instantiate(hoveredCard, MixArea.instance.transform).gameObject;
+            GameObject clone = Instantiate(bottomCard, MixArea.instance.transform).gameObject;
             clone.GetComponent<ElementCard>().UpdateElement(element);
             clone.GetComponent<ElementCard>().canvasGroup.blocksRaycasts = true;
             NegativeFeedback(clone.transform);
@@ -132,13 +140,13 @@ public class InteractionManager : MonoBehaviour
         Vector3 randomDirection = new Vector3(Random.Range(-200, 200), Random.Range(-200, 200), 0);
 
         // Convert the hovered card position to local space relative to MixArea
-        Vector3 localPos = MixArea.instance.rectTransform.InverseTransformPoint(hoveredCard.transform.position);
+        Vector3 localPos = MixArea.instance.rectTransform.InverseTransformPoint(bottomCard.transform.position);
 
         // Calculate target local position
         Vector3 targetLocalPos = localPos + randomDirection;
 
         // Get the size of the hovered card
-        RectTransform hoveredCardRect = hoveredCard.GetComponent<RectTransform>();
+        RectTransform hoveredCardRect = bottomCard.GetComponent<RectTransform>();
         Vector2 cardSize = hoveredCardRect.rect.size;
 
         // Get the Rect of the MixArea

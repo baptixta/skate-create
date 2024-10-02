@@ -36,7 +36,7 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false;
-        InteractionManager.instance.selectedCard = this;
+        InteractionManager.instance.topCard = this;
         isDragging = true;
     }
 
@@ -72,22 +72,26 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public virtual void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
-        InteractionManager.instance.selectedCard = null;
+        InteractionManager.instance.topCard = null;
         isDragging = false;
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         OnHover.Invoke(true);
-        if (InteractionManager.instance.selectedCard != null)
-            InteractionManager.instance.hoveredCard = this;
+
+        InteractionManager.instance.SetHoveredCard(this);
+        if (InteractionManager.instance.topCard != null)
+            InteractionManager.instance.bottomCard = this;
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         OnHover.Invoke(false);
-        if (InteractionManager.instance.selectedCard != null)
-            InteractionManager.instance.hoveredCard = null;
+
+        InteractionManager.instance.SetHoveredCard(null);
+        if (InteractionManager.instance.topCard != null)
+            InteractionManager.instance.bottomCard = null;
     }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
