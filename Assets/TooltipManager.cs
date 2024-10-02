@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
+using DG.Tweening;
 
 public class TooltipManager : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class TooltipManager : MonoBehaviour
     public LocalizeStringEvent localizeStringEvent;
 
     private RectTransform rectTransform;
+    [SerializeField] private CanvasGroup tooltipCanvasGroup;
 
     void Start()
     {
+
         rectTransform = GetComponent<RectTransform>();
 
         InteractionManager.instance.OnHover.AddListener(OnHover);
@@ -30,6 +33,8 @@ public class TooltipManager : MonoBehaviour
 
         // Trigger the Localize String Event to update UI with the localized string
         localizeStringEvent.StringReference = localizedString;
+
+        tooltipCanvasGroup.alpha = 0;
     }
 
     private void OnLocalizedStringChanged(string value)
@@ -39,10 +44,20 @@ public class TooltipManager : MonoBehaviour
 
     private void OnHover(Card card)
     {
+        bool show = false;
+
+        if (card != null)
+            show = card.GetComponent<ActionCard>() != null ? true : false;
+
+        tooltipCanvasGroup.DOComplete();
+        tooltipCanvasGroup.DOFade(show ? 1 : 0, .2f);
+
         if (card != null)
         {
             if (card.GetComponent<ActionCard>() != null)
             {
+                tooltipCanvasGroup.DOComplete();
+                tooltipCanvasGroup.DOFade(0, .2f).From();
                 string key = string.Empty;
 
                 switch (card.GetComponent<ActionCard>().actionType)
@@ -67,9 +82,8 @@ public class TooltipManager : MonoBehaviour
                 }
                 localizedString.TableEntryReference = key;
 
-                rectTransform.sizeDelta = card.GetComponent<RectTransform>().sizeDelta;
-                transform.position = card.transform.position;
-                gameObject.SetActive(card != null);
+                //rectTransform.sizeDelta = card.GetComponent<RectTransform>().sizeDelta;
+                //transform.position = card.transform.position;
             }
         }
     }
@@ -77,11 +91,11 @@ public class TooltipManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void OnDisable()
     {
         localizedString.StringChanged -= OnLocalizedStringChanged;
     }
+
 }
