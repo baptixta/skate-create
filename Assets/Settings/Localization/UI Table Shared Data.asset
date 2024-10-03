@@ -31,6 +31,10 @@ MonoBehaviour:
     m_Key: filter-action
     m_Metadata:
       m_Items: []
+  - m_Id: 381396538351616
+    m_Key: first-tutorial
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

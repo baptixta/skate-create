@@ -38,6 +38,9 @@ public class Card : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         canvasGroup.blocksRaycasts = false;
         InteractionManager.instance.topCard = this;
         isDragging = true;
+
+        if (GameManager.instance.tutorial)
+            GameManager.instance.TutorialDragCheck();
     }
 
     public virtual void OnDrag(PointerEventData eventData)

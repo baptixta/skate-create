@@ -48,7 +48,7 @@ public class CardVisual : MonoBehaviour
 
         foreach (string overlay in overlays)
         {
-            print(overlay);
+            //print(overlay);
             if (icon.transform.Find(overlay) != null)
             {
                 icon.transform.Find(overlay).GetComponent<Image>().enabled = true;

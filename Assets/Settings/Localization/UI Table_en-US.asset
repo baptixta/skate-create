@@ -36,6 +36,10 @@ MonoBehaviour:
       click to change'
     m_Metadata:
       m_Items: []
+  - m_Id: 381396538351616
+    m_Localized: drag the cards together to create <b>skate tricks</b>!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -36,6 +36,10 @@ MonoBehaviour:
       aperte para mudar'
     m_Metadata:
       m_Items: []
+  - m_Id: 381396538351616
+    m_Localized: arraste e combine as cartas para criar <b>truques de skate</b>!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

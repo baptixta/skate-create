@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
+
     [Header("References")]
     [SerializeField] private GameObject elementCardPrefab;
     [SerializeField] private Transform elementContainer;
@@ -32,11 +33,21 @@ public class GameManager : MonoBehaviour
     [Header("Version Settings")]
     public TextMeshProUGUI versionLabel;
 
+    [Header("Tutorial")]
+    [SerializeField] private RectTransform rightPanel;
+    [SerializeField] private CanvasGroup leftPanelCanvasGroup;
+    [SerializeField] private CanvasGroup dragTutorialCanvasGroup;
+    private Vector2 rightPanelOriginalPos;
+    public Element[] tutorialElements;
+    [HideInInspector] public bool tutorial;
+
     private void Awake()
     {
         instance = this;
 
         resetAction.action.performed += ResetAction_performed;
+
+        rightPanelOriginalPos = rightPanel.anchoredPosition;
     }
 
     private void OnDisable()
@@ -46,8 +57,12 @@ public class GameManager : MonoBehaviour
 
     private void ResetAction_performed(InputAction.CallbackContext context)
     {
+        if (ES3.KeyExists("unlockedElements"))
+        {
+            ES3.DeleteFile();
+        }
         LoadInitialElementsFromCSV("initialElements");
-        Save();
+        //Save();
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -66,6 +81,23 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            //new save, do TUTORIAL
+            tutorial = true;
+            rightPanel.anchoredPosition = Vector3.zero;
+            leftPanelCanvasGroup.alpha = 0;
+            leftPanelCanvasGroup.blocksRaycasts = false;
+            dragTutorialCanvasGroup.alpha = 1;
+            float space = 0;
+
+            foreach (Element element in tutorialElements)
+            {
+                ElementCard card = Instantiate(elementCardPrefab, MixArea.instance.transform).GetComponent<ElementCard>();
+                card.GetComponent<RectTransform>().anchoredPosition += Vector2.right * space;
+                card.UpdateElement(element);
+                card.gameObject.name = card.element.elementName;
+                space += 300;
+            }
+
             LoadInitialElementsFromCSV("initialElements");
             Save();
         }
@@ -77,6 +109,11 @@ public class GameManager : MonoBehaviour
         if (versionLabel != null)
             versionLabel.text = Application.version;
 
+    }
+
+    public void TutorialDragCheck()
+    {
+        dragTutorialCanvasGroup.DOFade(0, .3f);
     }
 
     void CreateCards(Element[] elementList)
@@ -176,6 +213,15 @@ public class GameManager : MonoBehaviour
 
     public void TryUnlockCombination(Element combination)
     {
+
+        if (tutorial)
+        {
+            rightPanel.DOAnchorPos(rightPanelOriginalPos, .3f).SetEase(Ease.OutBack);
+            //rightPanel.anchoredPosition = rightPanelOriginalPos;
+            leftPanelCanvasGroup.DOFade(1, .4f); leftPanelCanvasGroup.blocksRaycasts = true;
+            tutorial = false;
+        }
+
         for (int i = 0; i < unlockedElements.Length; i++)
         {
             if (unlockedElements[i] == combination)
